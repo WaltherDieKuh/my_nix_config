@@ -1,0 +1,1 @@
+modules/debs/magicq.deb filter=lfs diff=lfs merge=lfs -text
