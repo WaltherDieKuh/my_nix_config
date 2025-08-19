@@ -14,6 +14,7 @@
       laptopUni = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 	modules = [
+	  ./hosts/hardware-configuration.nix
 	  ./hosts/laptopUni.nix
 	  home-manager.nixosModules.home-manager{
  	    home-manager.useGlobalPkgs = true;
