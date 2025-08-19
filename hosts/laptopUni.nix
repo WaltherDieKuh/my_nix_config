@@ -1,9 +1,12 @@
-# host configuration for laptopUni
+#Das ist meine hosts/laptopUni.nix 
 
 { config, pkgs, ...}: {
   imports = [];
 
-  nixppkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
   
   networking.hostName = "laptopUni";
   time.timeZone = "Europe/Berlin";
@@ -13,15 +16,15 @@
     extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" ];
   };
 
-  enviromnemt.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     vim
     git
   ];
 
   services.xserver.enable = false;
   services.displayManager.enable = false;
-  console.useXkbConfig = true;
 
   programs.hyprland.enable = true;
 
   system.stateVersion = "25.05";
+}
