@@ -7,6 +7,18 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # File systems configuration. You need to edit these to match your partitions.
+  # Use `lsblk` or a similar tool to find your device names.
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/nixos"; # or "/dev/sda2"
+    fsType = "ext4";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/boot"; # or "/dev/sda1"
+    fsType = "vfat";
+  };
   
   networking.hostName = "laptopUni";
   time.timeZone = "Europe/Berlin";
