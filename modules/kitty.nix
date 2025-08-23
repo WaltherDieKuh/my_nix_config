@@ -1,5 +1,5 @@
 #kitty config
-{pkgs, ...}{
+{pkgs, ...}: {
 programs.kitty = {
   enable = true;
   package = pkgs.kitty;
