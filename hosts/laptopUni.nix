@@ -30,6 +30,7 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+    neovim
   ];
 
   services.xserver.enable = false;
