@@ -9,6 +9,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   
   networking.hostName = "laptopUni";
+  networking.networkmanager.enable = true;
   time.timeZone = "Europe/Berlin";
 
   users.users.willi = {
