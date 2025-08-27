@@ -22,13 +22,13 @@
         };
 
         clock = {
-          format = "{:%H:%M }";
+          format = "{:%H:%M:%S}";
           "tooltip-format" = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
 
         pulseaudio = {
-          format = "{volume}% {icon}";
-          "format-muted" = " Muted";
+          format = "{volume}% 🔋";
+          "format-muted" = "🔇 Muted";
           "format-icons" = {
             default = ["" ""];
           };
@@ -36,9 +36,9 @@
         };
 
         network = {
-          "format-wifi" = "{essid} ({signalStrength}%) ";
+          "format-wifi" = "{essid} ({signalStrength}%)";
           "format-ethernet" = "{ifname}: {ipaddr}/{cidr} ";
-          "format-disconnected" = "Disconnected ⚠";
+          "format-disconnected" = "Disconnected 🚫";
         };
 
         battery = {
@@ -47,9 +47,9 @@
             critical = 15;
           };
           format = "{capacity}% {icon}";
-          "format-charging" = "{capacity}% ";
+          "format-charging" = "{capacity}% ⚡️";
           "format-plugged" = "{capacity}% ";
-          "format-icons" = ["" "" "" "" ""];
+          "format-icons" = ["🪫" "🪫" "🪫" "🔋" "🔋"];
         };
 
         tray = {
