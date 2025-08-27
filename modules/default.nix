@@ -7,5 +7,6 @@
       ./fastfetch.nix
       ./waybar/waybar.nix
       ./hyprland/hyprland.nix
+      ./vscode.nix
     ];
 }
