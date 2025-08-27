@@ -13,9 +13,7 @@
         "QT_QPA_PLATFORMTHEME,qt5ct"
       ];
 
-      ecosystem{
-        no_update_news = true;
-      };
+      ecosystem.no_update_news = true;
       
       # Input configuration
       input = {
