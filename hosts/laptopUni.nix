@@ -33,7 +33,6 @@
     neovim
     # Icon themes
     papirus-icon-theme
-    breeze-icons
     hicolor-icon-theme
   ];
 
