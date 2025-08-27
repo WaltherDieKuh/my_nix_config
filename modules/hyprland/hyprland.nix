@@ -95,8 +95,9 @@
         "$mod, V, togglefloating,"
         "$mod, R, exec, wofi --show drun"
         "$mod, P, pseudo,"
-        "$mod, J, togglesplit,"#
+        "$mod, J, togglesplit,"
         "$mod, F, exec, firefox"
+        "$mod, D, exec, emojipicker"
 
         # Move focus with mod + arrow keys
         "$mod, left, movefocus, l"

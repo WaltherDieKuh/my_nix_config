@@ -8,5 +8,6 @@
       ./waybar/waybar.nix
       ./hyprland/hyprland.nix
       ./vscode.nix
+      ./emojipicker.nix
     ];
 }
