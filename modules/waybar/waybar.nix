@@ -27,7 +27,7 @@
         };
 
         pulseaudio = {
-          format = "{volume}% 🔋";
+          format = "{volume}% 🔊";
           "format-muted" = "🔇 Muted";
           "format-icons" = {
             default = ["" ""];
