@@ -4,5 +4,5 @@ programs.vscode = {
 
   enable = true;
 
-}
+};
 }
