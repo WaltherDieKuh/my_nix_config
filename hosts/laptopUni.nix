@@ -34,6 +34,7 @@
     # Icon themes
     papirus-icon-theme
     hicolor-icon-theme
+    emote
   ];
 
   services.xserver.enable = false;

@@ -97,7 +97,7 @@
         "$mod, P, pseudo,"
         "$mod, J, togglesplit,"
         "$mod, F, exec, firefox"
-        "$mod, D, exec, emojipicker"
+        "$mod, D, exec, emote"
 
         # Move focus with mod + arrow keys
         "$mod, left, movefocus, l"
