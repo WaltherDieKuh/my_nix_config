@@ -93,7 +93,7 @@
         "$mod, M, exit,"
         "$mod, E, exec, nemo"
         "$mod, V, togglefloating,"
-        "$mod, Space, exec, rofi --show drun"
+        "$mod, Space, exec, rofi -show drun"
         "$mod, P, pseudo,"
         "$mod, J, togglesplit,"
         "$mod, F, exec, firefox"
