@@ -8,5 +8,7 @@
       ./waybar/waybar.nix
       ./hyprland/hyprland.nix
       ./vscode.nix
+      ./rofi.nix
+      ./nemo.nix
     ];
 }

@@ -1,0 +1,5 @@
+{
+  programs.nemo = {
+    enable = true;
+  };
+}
