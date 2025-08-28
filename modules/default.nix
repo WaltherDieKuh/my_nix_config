@@ -9,6 +9,5 @@
       ./hyprland/hyprland.nix
       ./vscode.nix
       ./rofi.nix
-      ./nemo.nix
     ];
 }

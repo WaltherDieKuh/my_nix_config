@@ -35,6 +35,7 @@
     papirus-icon-theme
     hicolor-icon-theme
     emote
+    nemo
   ];
 
   services.xserver.enable = false;
