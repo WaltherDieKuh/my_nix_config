@@ -9,5 +9,6 @@
       ./hyprland/hyprland.nix
       ./vscode.nix
       ./rofi.nix
+      ./magicq.nix
     ];
 }

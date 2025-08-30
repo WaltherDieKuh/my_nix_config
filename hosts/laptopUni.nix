@@ -22,6 +22,10 @@
     XKB_DEFAULT_VARIANT = "nodeadkeys";
   };
 
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+  };
+
   users.users.willi = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" ];
@@ -36,6 +40,7 @@
     hicolor-icon-theme
     emote
     nemo
+    comma
   ];
 
   services.xserver.enable = false;
