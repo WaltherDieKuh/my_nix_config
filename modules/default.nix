@@ -10,5 +10,6 @@
       ./vscode.nix
       ./rofi.nix
       ./magicq.nix
+      ./xournalpp.nix
     ];
 }
