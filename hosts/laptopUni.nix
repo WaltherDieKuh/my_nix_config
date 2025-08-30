@@ -41,6 +41,7 @@
     emote
     nemo
     comma
+    xournalpp
   ];
 
   services.xserver.enable = false;

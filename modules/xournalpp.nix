@@ -1,5 +1,0 @@
-{
-  programs.xournalpp = {
-    enable = true;
-  };
-}
