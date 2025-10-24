@@ -34,8 +34,8 @@
   environment.systemPackages = with pkgs; [
     vim
     git
+    git-lfs
     neovim
-    # Icon themes
     papirus-icon-theme
     hicolor-icon-theme
     emote
