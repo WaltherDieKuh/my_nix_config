@@ -1,6 +1,7 @@
 # user configuration
 { config, pkgs, ... }: {
   home.packages = with pkgs; [
+    magicq
     firefox
   ];
 
