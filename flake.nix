@@ -9,7 +9,6 @@
   };
 
   outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs: {
-    # Wir brauchen den 'overlays'-Abschnitt hier oben nicht mehr.
 
     nixosConfigurations = {
       laptopUni = nixpkgs.lib.nixosSystem {
@@ -32,14 +31,9 @@
           
           hyprland.nixosModules.default
 
-          # --- HIER IST DIE ÄNDERUNG ---
-          # Wir fügen das Overlay direkt hier hinzu.
-          # Das macht den Code leichter lesbar, weil alles an einem Ort ist.
           ({
-            # Dieses Modul fügt unser Overlay zu den Nix Packages hinzu.
             nixpkgs.overlays = [
               (final: prev: {
-                # Der Name, unter dem das Paket verfügbar sein wird (pkgs.magicq)
                 magicq = prev.callPackage ./pkgs/magicq.nix {};
               })
             ];
