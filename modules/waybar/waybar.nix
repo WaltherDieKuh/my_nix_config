@@ -42,6 +42,8 @@
           "format-icons" = {
             wifi = ["󰖪" "󰤟" "󰤢" "󰤥" "󰤨"];
           };
+          # öffnen des NetworkManager GUI beim Klick (nm-connection-editor)
+          "on-click" = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
         };
 
         battery = {

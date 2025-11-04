@@ -147,8 +147,11 @@
       # Window rules
       windowrulev2 = [
         "suppressevent maximize, class:.*"
+        "float, class:^(nm-connection-editor)$"
       ];
 
+      # NetworkManager GUI floating (nicht getilted)
+      # class muss eine RegEx sein; hier passend für nm-connection-editor
       # Auto-start applications
       exec-once = [
         "waybar"

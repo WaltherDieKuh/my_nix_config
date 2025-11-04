@@ -43,6 +43,7 @@
     nemo
     comma
     xournalpp
+    networkmanagerapplet
   ];
 
   fonts.packages = with pkgs; [
