@@ -5,6 +5,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  services.gvfs.enable = true;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 

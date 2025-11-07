@@ -88,7 +88,8 @@
 
       bind = [
         # Application shortcuts
-        "$mod, T, exec, kitty"
+        "$mod, T, exec, kitty"      
+
         "$mod, Q, killactive,"
         "$mod, M, exit,"
         "$mod, E, exec, nemo"

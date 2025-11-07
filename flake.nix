@@ -8,9 +8,12 @@
     hyprland.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
-  };
+    nixvim.url = "github:derhalbgrieche/nixvim";
+   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, hyprland, stylix, ... }@inputs: {
+
+    templates = import ./templates;
 
     nixosConfigurations = {
       laptopUni = nixpkgs.lib.nixosSystem {
@@ -19,12 +22,16 @@
           ./hosts/hardware-configuration.nix
           ./hosts/laptopUni.nix
 
+          stylix.nixosModules.stylix
+
           home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
           
             home-manager.users.willi = { 
               imports = [
+                stylix.homeManagerModules.stylix # stylix als home-manager-Modul hinzufügen
                 ./home/willi.nix
                 ./modules/default.nix
               ]; 

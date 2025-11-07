@@ -24,14 +24,10 @@
         name = "FiraCode Nerd Font Mono"; # or "FiraCode Nerd Font"
       };
 
-      emoji = {
-        package = pkgs.noto-fonts-color-emoji;
-        name = "Noto Color Emoji";
-      };
       sizes = {
         applications = 10;
-        desktop = 8;
-        popups = 8;
+        desktop = 12; # Erhöht für bessere Lesbarkeit in der Waybar
+        popups = 10;
         terminal = 10;
       };
     };
@@ -41,5 +37,9 @@
       name = "macOS";
       size = 24;
     };
+    targets.gtk.enable = true; # Stellt sicher, dass das Cursor-Theme für GTK-Apps gesetzt wird
+    targets.hyprland.enable = false;
+    targets.vscode.enable = false;
+    targets.waybar.enable = false;
   };
 }
