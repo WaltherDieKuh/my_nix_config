@@ -1,17 +1,26 @@
 #Das ist meine hosts/laptopUni.nix 
 
-{ config, pkgs, ...}: {
-  imports = [];
+{ config, pkgs, lib, ... }: {
+  imports = [
+    ../common/default.nix
+    ../modules/neovim.nix
+  ];
 
-  nixpkgs.config.allowUnfree = true;
-
-  services.gvfs.enable = true;
-
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    minegrub-theme = {
+      enable = true;
+      splash = "Hier k\u00f6nnte ein Nazi h\u00e4ngen <3";
+      background = "background_options/1.8  - [Classic Minecraft].png";
+      boot-options-count = 4;
+    };
+  };
 
   networking.hostName = "laptopUni";
-  networking.networkmanager.enable = true;
   time.timeZone = "Europe/Berlin";
 
   # Localization settings for Germany
@@ -37,7 +46,6 @@
     vim
     git
     git-lfs
-    neovim
     papirus-icon-theme
     hicolor-icon-theme
     font-awesome

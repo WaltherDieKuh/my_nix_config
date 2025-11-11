@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     magicq
     firefox
+    monocraft
   ];
 
   home.pointerCursor.hyprcursor.enable = true;

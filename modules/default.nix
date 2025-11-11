@@ -10,5 +10,6 @@
       ./vscode.nix
       ./rofi.nix
       ./vesktop.nix
+      ./neovim.nix
     ];
 }

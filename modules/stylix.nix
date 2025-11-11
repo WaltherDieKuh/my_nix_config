@@ -20,8 +20,8 @@
       };
 
       monospace = {
-        package = pkgs.fira-code;
-        name = "FiraCode Nerd Font Mono"; # or "FiraCode Nerd Font"
+        package = pkgs.monocraft;
+        name = "Monocraft";
       };
 
       sizes = {
@@ -41,5 +41,6 @@
     targets.hyprland.enable = false;
     targets.vscode.enable = false;
     targets.waybar.enable = false;
+    targets.kitty.enable = true;
   };
 }

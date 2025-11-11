@@ -9,18 +9,33 @@
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:derhalbgrieche/nixvim";
+    minegrub-theme.url = "github:Lxtharia/minegrub-theme";
    };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, stylix, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, hyprland, stylix, ... }@inputs: 
+  let
+    inherit (self) outputs;
+    lib = nixpkgs.lib // home-manager.lib;
+    systems = ["x86_64-linux" "aarch64-linux"];
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+  in {
 
+
+    inherit lib;
     templates = import ./templates;
+    overlays = import ./overlays { inherit inputs; };
 
     nixosConfigurations = {
       laptopUni = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs outputs;
+        };
         modules = [
           ./hosts/hardware-configuration.nix
           ./hosts/laptopUni.nix
+
+          inputs.minegrub-theme.nixosModules.default
 
           stylix.nixosModules.stylix
 
@@ -31,16 +46,17 @@
           
             home-manager.users.willi = { 
               imports = [
-                stylix.homeManagerModules.stylix # stylix als home-manager-Modul hinzufügen
-                ./home/willi.nix
-                ./modules/default.nix
-              ]; 
+                stylix.homeModules.stylix
+                 ./home/willi.nix
+                  ./modules/default.nix
+               ]; 
             };
           }
           
           hyprland.nixosModules.default
 
-          ({
+          # Das Overlay-Modul wird hier als letztes Element eingefügt
+          ({ config, pkgs, ... }: {
             nixpkgs.overlays = [
               (final: prev: {
                 magicq = prev.callPackage ./pkgs/magicq.nix {};
