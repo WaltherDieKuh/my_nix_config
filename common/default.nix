@@ -7,6 +7,9 @@
 }: let
   system = pkgs.stdenv.hostPlatform.system;
 in {
+  imports = [
+    ./greetd.nix
+  ];
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services = {
@@ -54,7 +57,7 @@ in {
     enable = true;
     enableFishIntegration = true;
   };
-  environment.systemPackages = [ pkgs.neovim ];
+  environment.systemPackages = [pkgs.neovim];
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
   };
@@ -74,6 +77,6 @@ in {
     plymouth = {
       enable = true;
     };
-    
   };
 }
+

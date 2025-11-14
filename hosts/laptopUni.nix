@@ -68,6 +68,7 @@
     comma
     xournalpp
     networkmanagerapplet
+    layer-shell-qt5
   ];
 
   fonts.packages = with pkgs; [
@@ -77,7 +78,6 @@
   ];
 
   services.xserver.enable = false;
-  services.displayManager.enable = false;
 
   programs.hyprland.enable = true;
 

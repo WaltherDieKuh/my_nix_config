@@ -50,6 +50,9 @@
       # Decoration
       decoration = {
         rounding = 10;
+        active_opacity = 0.85;
+        inactive_opacity = 0.85;
+        fullscreen_opacity = 1.00;
 
         blur = {
           enabled = true;

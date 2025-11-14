@@ -1,8 +1,8 @@
 # hyprpaper.nix
 {pkgs, ...}: let
   wallpaperPaths = [
-    ./wallpapers/BastiGHG1.jpg
-    ./wallpapers/BastiGHG2.jpg
+    #   ./wallpapers/BastiGHG1.jpg
+    #   ./wallpapers/BastiGHG2.jpg
     ./wallpapers/minecraft1.jpg
     ./wallpapers/minecraft2.jpg
   ];

@@ -10,6 +10,7 @@
     monocraft
     brightnessctl
     hyprpaper
+    wl-clipboard
   ];
 
   home.pointerCursor.hyprcursor.enable = true;
