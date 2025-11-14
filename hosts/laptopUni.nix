@@ -68,6 +68,7 @@
     comma
     xournalpp
     networkmanagerapplet
+    spotify
   ];
 
   fonts.packages = with pkgs; [
