@@ -79,6 +79,16 @@
               nixpkgs.overlays = [
                 (final: prev: {
                   magicq = prev.callPackage ./pkgs/magicq.nix {};
+                  libsForQt5 =
+                    prev.libsForQt5
+                    // {
+                      # Leite die alte Anfrage an den neuen Ort weiter
+                      layer-shell-qt = final.kdePackages.layer-shell-qt;
+                    };
+
+                  # Bonus: Manche alten Pakete suchen vielleicht auch hier.
+                  # Dies ist optional, aber sicher ist sicher.
+                  layer-shell-qt = final.kdePackages.layer-shell-qt;
                 })
               ];
             }

@@ -11,5 +11,6 @@
     ./neovim.nix
     ./fish.nix
     ./hyprpaper/hyprpaper.nix
+    ./email.nix
   ];
 }

@@ -1,0 +1,5 @@
+(final: prev: {
+    libsForQt5 = prev.libsForQt5 // {
+      layer-shell-qt = final.layer-shell-qt;
+    };
+})

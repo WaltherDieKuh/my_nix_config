@@ -11,6 +11,7 @@
     brightnessctl
     hyprpaper
     wl-clipboard
+    jetbrains-toolbox
   ];
 
   home.pointerCursor.hyprcursor.enable = true;

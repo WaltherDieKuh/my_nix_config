@@ -18,7 +18,7 @@
     efiSupport = true;
     minegrub-theme = {
       enable = true;
-      splash = "Hier k\u00f6nnte ein Nazi h\u00e4ngen <3";
+      splash = "C++ - alles kann, nichts muss";
       background = "background_options/1.8  - [Classic Minecraft].png";
       boot-options-count = 4;
     };
@@ -68,7 +68,6 @@
     comma
     xournalpp
     networkmanagerapplet
-    layer-shell-qt5
   ];
 
   fonts.packages = with pkgs; [
