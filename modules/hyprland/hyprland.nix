@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -14,7 +16,7 @@
       ];
 
       ecosystem.no_update_news = true;
-      
+
       # Input configuration
       input = {
         kb_layout = "de";
@@ -88,7 +90,7 @@
 
       bind = [
         # Application shortcuts
-        "$mod, T, exec, kitty"      
+        "$mod, T, exec, kitty"
 
         "$mod, Q, killactive,"
         "$mod, M, exit,"
@@ -136,7 +138,6 @@
 
         # Scroll through existing workspaces with mod + scroll
         "$mod, mouse_down, workspace, e+1"
-        "$mod, mouse_up, workspace, e-1"
       ];
 
       # Mouse bindings
@@ -145,6 +146,11 @@
         "$mod, mouse:273, resizewindow"
       ];
 
+      binde = [
+        ", XF86MonBrightnessUp, exec, brightnessctl set +5"
+
+        ", XF86MonBrightnessDown, exec, brightnessctl set 5-"
+      ];
       # Window rules
       windowrulev2 = [
         "suppressevent maximize, class:.*"

@@ -1,9 +1,15 @@
 # user configuration
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     magicq
     firefox
     monocraft
+    brightnessctl
+    hyprpaper
   ];
 
   home.pointerCursor.hyprcursor.enable = true;
@@ -16,5 +22,4 @@
     ../modules/stylix.nix
     ../modules/stylix-home.nix
   ];
-
 }

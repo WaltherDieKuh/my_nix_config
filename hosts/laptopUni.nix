@@ -1,6 +1,10 @@
-#Das ist meine hosts/laptopUni.nix 
-
-{ config, pkgs, lib, ... }: {
+#Das ist meine hosts/laptopUni.nix
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ../common/default.nix
     ../modules/neovim.nix
@@ -34,12 +38,22 @@
   };
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 
   users.users.willi = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "video" "audio" "input" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "audio"
+      "input"
+    ];
+    shell = pkgs.fish;
   };
 
   environment.systemPackages = with pkgs; [
