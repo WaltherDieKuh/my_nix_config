@@ -61,22 +61,4 @@ in {
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
   };
-  boot = {
-    consoleLogLevel = 0;
-    initrd = {
-      verbose = false;
-      systemd.enable = true;
-    };
-    kernelParams = [
-      "splash"
-      "boot.shell_on_fail"
-      "udev.log_priority=3"
-      "rd.systemd.show_status=auto"
-      "plymouth.use-simpledrm"
-    ];
-    plymouth = {
-      enable = true;
-    };
-  };
 }
-

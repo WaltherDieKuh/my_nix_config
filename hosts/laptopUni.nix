@@ -23,6 +23,18 @@
       boot-options-count = 4;
     };
   };
+  boot.plymouth = {
+    enable = true;
+    theme = "minecraft";
+    themePackages = [pkgs.minecraft-plymouth-theme];
+  };
+
+  boot.kernelParams = [
+    "quiet"
+    "splash"
+  ];
+
+  boot.initrd.availableKernelModules = lib.mkBefore ["i915"];
 
   networking.hostName = "laptopUni";
   time.timeZone = "Europe/Berlin";
@@ -42,6 +54,13 @@
       "nix-command"
       "flakes"
     ];
+  };
+
+  services = {
+    pipewire = {
+      enable = true;
+      jack.enable = true;
+    };
   };
 
   users.users.willi = {
@@ -69,6 +88,9 @@
     xournalpp
     networkmanagerapplet
     spotify
+    localsend
+    zip
+    unzip
   ];
 
   fonts.packages = with pkgs; [

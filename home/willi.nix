@@ -23,5 +23,6 @@
   imports = [
     ../modules/stylix.nix
     ../modules/stylix-home.nix
+    ./aliasse.nix
   ];
 }
