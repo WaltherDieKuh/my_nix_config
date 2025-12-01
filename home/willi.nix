@@ -12,6 +12,8 @@
     hyprpaper
     wl-clipboard
     jetbrains-toolbox
+    helvum
+    docker
   ];
 
   home.pointerCursor.hyprcursor.enable = true;
