@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.waybar = {
     enable = true;
     settings = {
@@ -8,9 +10,9 @@
         layer = "top";
         position = "top";
         height = 30;
-        modules-left = [ "hyprland/workspaces" "hyprland/window" ];
-        modules-center = [ "clock" ];
-        modules-right = [ "pulseaudio" "network" "battery" "tray" ];
+        modules-left = ["hyprland/workspaces" "hyprland/window"];
+        modules-center = ["clock"];
+        modules-right = ["pulseaudio" "network" "battery" "tray"];
 
         "hyprland/workspaces" = {
           format = "{name}";
@@ -38,7 +40,7 @@
         network = {
           "format-wifi" = "{icon}";
           "format-ethernet" = "{ifname}: {ipaddr}/{cidr} ";
-          "format-disconnected" = "Disconnected ";
+          "format-disconnected" = "󰤭";
           "format-icons" = {
             wifi = ["󰖪" "󰤟" "󰤢" "󰤥" "󰤨"];
           };
@@ -66,3 +68,4 @@
     style = builtins.readFile ./waybar.css;
   };
 }
+
