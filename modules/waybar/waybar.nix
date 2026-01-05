@@ -10,9 +10,16 @@
         layer = "top";
         position = "top";
         height = 30;
-        modules-left = ["hyprland/workspaces" "hyprland/window"];
+        modules-left = [
+          "hyprland/workspaces"
+          "hyprland/window"
+        ];
         modules-center = ["clock"];
-        modules-right = ["pulseaudio" "network" "battery" "tray"];
+        modules-right = [
+          "tray"
+          "pulseaudio"
+          "battery"
+        ];
 
         "hyprland/workspaces" = {
           format = "{name}";
@@ -29,25 +36,16 @@
         };
 
         pulseaudio = {
-          format = "{volume}% {icon}";
+          format = "{volume} {icon}";
           "format-muted" = "";
           "format-icons" = {
-            default = ["" ""];
+            default = [
+              ""
+              ""
+            ];
           };
           "on-click" = "pavucontrol";
         };
-
-        network = {
-          "format-wifi" = "{icon}";
-          "format-ethernet" = "{ifname}: {ipaddr}/{cidr} ";
-          "format-disconnected" = "󰤭";
-          "format-icons" = {
-            wifi = ["󰖪" "󰤟" "󰤢" "󰤥" "󰤨"];
-          };
-          # öffnen des NetworkManager GUI beim Klick (nm-connection-editor)
-          "on-click" = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
-        };
-
         battery = {
           states = {
             warning = 30;
@@ -56,7 +54,18 @@
           format = "{capacity}% {icon}";
           "format-charging" = "{capacity}% 󰂄";
           "format-plugged" = "{capacity}% ";
-          "format-icons" = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+          "format-icons" = [
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
+          ];
         };
 
         tray = {
@@ -68,4 +77,3 @@
     style = builtins.readFile ./waybar.css;
   };
 }
-

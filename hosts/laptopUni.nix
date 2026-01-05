@@ -61,6 +61,9 @@
       enable = true;
       jack.enable = true;
     };
+    upower = {
+      enable = true;
+    };
   };
 
   users.users.willi = {
@@ -86,11 +89,24 @@
     nemo
     comma
     xournalpp
-    networkmanagerapplet
+    networkmanager
     spotify
     localsend
     zip
     unzip
+    sleuthkit
+    wineWowPackages.waylandFull
+    htop
+    btop
+    wireplumber
+    libgtop
+    bluez
+    bluez-tools
+    dart-sass
+    upower
+    gvfs
+    gtksourceview3
+    libsoup_3
   ];
 
   fonts.packages = with pkgs; [
