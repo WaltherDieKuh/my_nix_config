@@ -16,7 +16,6 @@
     docker
     tor-browser
     lmms
-    hyprpanel
   ];
 
   home.pointerCursor.hyprcursor.enable = true;

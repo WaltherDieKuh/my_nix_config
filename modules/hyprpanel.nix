@@ -2,12 +2,15 @@
   programs.hyprpanel = {
     enable = true;
     settings = {
-      "theme.font.name" = "Monocraft Nerd Font";
-      "theme.font.label" = "Monocraft Nerd Font Ultra-Light";
-      "bar.launcher.autoDetectIcon" = true;
-      "theme.bar.floating" = true;
-      "bar.autoHide" = "fullscreen";
-      "theme.bar.border.location" = "none";
+      theme.font.name = "Monocraft Nerd Font";
+      theme.font.label = "Monocraft Nerd Font Ultra-Light";
+      bar.launcher.autoDetectIcon = true;
+      theme.bar.floating = true;
+      theme.bar.outer_spacing = 0.8;
+      bar.autoHide = "fullscreen";
+      theme.bar.border.location = "none";
+
+      wallpaper.enable = false;
 
       "bar.layouts" = {
         "0" = {

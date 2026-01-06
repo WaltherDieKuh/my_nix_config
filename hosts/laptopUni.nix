@@ -107,6 +107,7 @@
     gvfs
     gtksourceview3
     libsoup_3
+    bottles
   ];
 
   fonts.packages = with pkgs; [
