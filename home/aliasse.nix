@@ -11,7 +11,7 @@
     la = "ls -A";
     ll = "ls -alF";
 
-    rebuild = "sudo nixos-rebuild switch --flake .#laptopUni";
+    rebuild = "sudo nixos-rebuild switch --flake .#AIO";
     search = "nix search nixpkgs";
     gc = "sudo nix-collect-garbage";
   };

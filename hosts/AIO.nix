@@ -7,36 +7,23 @@
 }: {
   imports = [
     ../common/default.nix
-    ../modules/neovim.nix
   ];
 
-  boot.loader.systemd-boot.enable = false;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub = {
-    enable = true;
-    device = "nodev";
-    efiSupport = true;
-    minegrub-theme = {
+  boot = {
+    loader.efi.canTouchEfiVariables = true;
+    loader.grub = {
       enable = true;
-      splash = "C++ - alles kann, nichts muss";
-      background = "background_options/1.8  - [Classic Minecraft].png";
-      boot-options-count = 4;
+      device = "nodev";
+      efiSupport = true;
     };
+
+    kernelParams = [
+      "quiet"
+      "splash"
+    ];
   };
-  boot.plymouth = {
-    enable = true;
-    theme = "minecraft";
-    themePackages = [pkgs.minecraft-plymouth-theme];
-  };
 
-  boot.kernelParams = [
-    "quiet"
-    "splash"
-  ];
-
-  boot.initrd.availableKernelModules = lib.mkBefore ["i915"];
-
-  networking.hostName = "laptopUni";
+  networking.hostName = "djj-AIO";
   time.timeZone = "Europe/Berlin";
 
   # Localization settings for Germany
@@ -65,8 +52,9 @@
       enable = true;
     };
   };
+  users.mutableUsers = false;
 
-  users.users.willi = {
+  users.users.djj = {
     isNormalUser = true;
     extraGroups = [
       "wheel"
@@ -76,44 +64,26 @@
       "input"
     ];
     shell = pkgs.fish;
+    password = "MAlighting";
   };
 
   environment.systemPackages = with pkgs; [
     vim
     git
     git-lfs
-    papirus-icon-theme
-    hicolor-icon-theme
-    font-awesome
-    emote
-    nemo
-    comma
-    xournalpp
     networkmanager
-    spotify
-    localsend
     zip
     unzip
-    sleuthkit
-    wineWowPackages.waylandFull
-    htop
     btop
-    wireplumber
-    libgtop
     bluez
-    bluez-tools
-    dart-sass
     upower
-    gvfs
-    gtksourceview3
-    libsoup_3
-    bottles
+    nemo
+    kitty
   ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     nerd-fonts.fira-code
-    noto-fonts
   ];
 
   services.xserver.enable = false;

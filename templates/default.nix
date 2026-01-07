@@ -1,3 +1,0 @@
-{
-  java.path = ./java;
-}

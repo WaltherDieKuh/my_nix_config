@@ -36,9 +36,9 @@
 
       # General settings
       general = {
-        gaps_in = 5;
-        gaps_out = 20;
-        border_size = 2;
+        gaps_in = 0;
+        gaps_out = 0;
+        border_size = 0;
         "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
 
@@ -49,15 +49,13 @@
 
       # Decoration
       decoration = {
-        rounding = 10;
-        active_opacity = 0.85;
-        inactive_opacity = 0.85;
+        rounding = 0;
+
+        active_opacity = 1.00;
         fullscreen_opacity = 1.00;
 
         blur = {
-          enabled = true;
-          size = 3;
-          passes = 1;
+          enabled = false;
         };
       };
 
@@ -96,14 +94,11 @@
         "$mod, T, exec, kitty"
 
         "$mod, Q, killactive,"
-        "$mod, M, exit,"
         "$mod, E, exec, nemo"
-        "$mod, V, togglefloating,"
-        "$mod, Space, exec, rofi -show drun"
-        "$mod, P, pseudo,"
-        "$mod, J, togglesplit,"
-        "$mod, F, exec, firefox"
-        "$mod, D, exec, emote"
+        "$mod, L, exec, MagicQ"
+
+        "$mod, F, fullscreen" # Super+F -> Echtes Vollbild
+        "$mod, M, fullscreen, 1"
 
         # Move focus with mod + arrow keys
         "$mod, left, movefocus, l"
@@ -138,7 +133,6 @@
         # Example special workspace (scratchpad)
         "$mod, S, togglespecialworkspace, magic"
         "$mod SHIFT, S, movetoworkspace, special:magic"
-
         # Scroll through existing workspaces with mod + scroll
         "$mod, mouse_down, workspace, e+1"
       ];
@@ -156,29 +150,16 @@
       ];
       # Window rules
       windowrulev2 = [
-        "suppressevent maximize, class:.*"
-
-        # 1. Alles was fl64.exe ist -> Floating
-        "float, class:^(fl64.exe)$"
-
-        # 2. Spezifisch das Trial/Welcome Fenster daran hindern, Fullscreen zu gehen
-        "suppressevent fullscreen, class:^(fl64.exe)$"
-        "nomaxsize, class:^(fl64.exe)$"
-
-        # 3. Fokus-Probleme beheben
-        # Verhindert, dass kleine Popups den Fokus so stehlen, dass du nicht mehr zurückklicken kannst
-        "noinitialfocus, class:^(fl64.exe)$"
-
-        # Deine restlichen Regeln
-        "float, class:^(firefox)$, title:^(.*)(Firefox)(.*)$"
-        "workspace 8, class:^(firefox)$"
+        "fullscreen, class:^(.*)$"
       ];
-      # NetworkManager GUI floating (nicht getilted)
-      # class muss eine RegEx sein; hier passend für nm-connection-editor
-      # Auto-start applications
       exec-once = [
-        "hyprpanel"
+        "[fullscreen] magicq"
       ];
+      misc = {
+        disable_hyprland_logo = true; # Deaktiviert das Anime-Logo/Maskottchen
+        disable_splash_rendering = true; # Deaktiviert den Text beim Start (spart Ressourcen)
+        background_color = "0x000000"; # Hintergrundfarbe (Format: 0xRRGGBB) -> Hier Schwarz
+      };
     };
   };
 }

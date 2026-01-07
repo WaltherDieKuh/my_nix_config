@@ -45,20 +45,4 @@ in {
   networking.hosts = {
     "127.0.0.1" = ["localhost"];
   };
-  programs.steam = {
-    enable = true;
-    protontricks.enable = true;
-    localNetworkGameTransfers.openFirewall = true;
-    extest.enable = true;
-    remotePlay.openFirewall = true;
-    extraCompatPackages = with pkgs; [proton-ge-bin];
-  };
-  programs.direnv = {
-    enable = true;
-    enableFishIntegration = true;
-  };
-  environment.systemPackages = [pkgs.neovim];
-  nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
-  };
 }
