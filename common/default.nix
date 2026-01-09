@@ -57,8 +57,32 @@ in {
     enable = true;
     enableFishIntegration = true;
   };
-  environment.systemPackages = [pkgs.neovim];
+  environment.systemPackages = with pkgs; [
+    neovim
+  ];
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
+  };
+  systemd.user.services.rclone-gdrive = {
+    Unit = {
+      Description = "Google Drive (Rclone)";
+      After = ["network-online.target"]; # Wartet auf Internet
+    };
+
+    Service = {
+      Type = "simple";
+      # %h ist dein Home-Verzeichnis, das versteht systemd automatisch
+      ExecStart = "${pkgs.rclone}/bin/rclone mount gdrive:/ %h/GoogleDrive --vfs-cache-mode writes --dir-cache-time 24h";
+
+      # WICHTIG: fusermount braucht den System-Pfad wegen Root-Rechten (SUID)
+      ExecStop = "/run/wrappers/bin/fusermount -u %h/GoogleDrive";
+
+      Restart = "on-failure";
+      RestartSec = "10s";
+    };
+
+    Install = {
+      WantedBy = ["default.target"]; # Startet beim Einloggen
+    };
   };
 }

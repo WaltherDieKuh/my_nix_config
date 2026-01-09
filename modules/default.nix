@@ -8,7 +8,7 @@
     ./hyprland/hyprland.nix
     ./vscode.nix
     ./rofi.nix
-    #./vesktop.nix
+    ./vesktop.nix
     ./neovim.nix
     ./fish.nix
     ./hyprpaper/hyprpaper.nix

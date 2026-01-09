@@ -11,7 +11,7 @@
     signing = {
       format = "ssh";
       signByDefault = true;
-      key = "~/.ssh/github.pub";
+      key = "~/.ssh/id_ed25519.pub";
     };
   };
 }

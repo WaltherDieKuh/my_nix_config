@@ -155,23 +155,8 @@
         ", XF86MonBrightnessDown, exec, brightnessctl set 5-"
       ];
       # Window rules
-      windowrulev2 = [
-        "suppressevent maximize, class:.*"
-
-        # 1. Alles was fl64.exe ist -> Floating
-        "float, class:^(fl64.exe)$"
-
-        # 2. Spezifisch das Trial/Welcome Fenster daran hindern, Fullscreen zu gehen
-        "suppressevent fullscreen, class:^(fl64.exe)$"
-        "nomaxsize, class:^(fl64.exe)$"
-
-        # 3. Fokus-Probleme beheben
-        # Verhindert, dass kleine Popups den Fokus so stehlen, dass du nicht mehr zurückklicken kannst
-        "noinitialfocus, class:^(fl64.exe)$"
-
-        # Deine restlichen Regeln
-        "float, class:^(firefox)$, title:^(.*)(Firefox)(.*)$"
-        "workspace 8, class:^(firefox)$"
+      windowrule = [
+        "match:class fl64.exe, float 1, fullscreen 0, suppress_event fullscreen fullscreenoutput"
       ];
       # NetworkManager GUI floating (nicht getilted)
       # class muss eine RegEx sein; hier passend für nm-connection-editor
