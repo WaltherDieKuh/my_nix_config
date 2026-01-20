@@ -10,6 +10,8 @@
     ../../modules/neovim.nix
   ];
 
+  virtualisation.docker.enable = true;
+
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub = {
@@ -74,6 +76,7 @@
       "video"
       "audio"
       "input"
+      "docker"
     ];
     shell = pkgs.fish;
   };
@@ -108,6 +111,7 @@
     gtksourceview3
     libsoup_3
     bottles
+    prismlauncher
   ];
 
   fonts.packages = with pkgs; [

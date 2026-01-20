@@ -59,30 +59,67 @@ in {
   };
   environment.systemPackages = with pkgs; [
     neovim
+    rclone
+    fuse
   ];
+  programs.fuse.enable = true;
+  programs.fuse.userAllowOther = true;
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
   };
+  # RClone Google Drive service
+
   systemd.user.services.rclone-gdrive = {
-    Unit = {
-      Description = "Google Drive (Rclone)";
-      After = ["network-online.target"]; # Wartet auf Internet
-    };
-
-    Service = {
+    description = "Google Drive Mount (rclone)";
+    # Der Service startet erst, wenn das Internet da ist
+    after = ["network-online.target"];
+    wantedBy = [
+      "default.target"
+      "graphical-session.target"
+    ];
+    serviceConfig = {
       Type = "simple";
-      # %h ist dein Home-Verzeichnis, das versteht systemd automatisch
-      ExecStart = "${pkgs.rclone}/bin/rclone mount gdrive:/ %h/GoogleDrive --vfs-cache-mode writes --dir-cache-time 24h";
+      # Wir erstellen den Ordner sicherheitshalber vorher
+      ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/GoogleDrive";
 
-      # WICHTIG: fusermount braucht den System-Pfad wegen Root-Rechten (SUID)
-      ExecStop = "/run/wrappers/bin/fusermount -u %h/GoogleDrive";
+      # WICHTIG: KEIN --daemon hier!
+      # --vfs-cache-mode writes ist wichtig, damit du Dateien bearbeiten kannst
+      ExecStart = ''
+        ${pkgs.rclone}/bin/rclone mount gdrive:/ %h/GoogleDrive \
+          --vfs-cache-mode writes \
+          --umask 0022 \
+          --uid $(id -u) \
+          --gid $(id -g)
+      '';
 
+      # Sauber unmounten beim Beenden
+      ExecStop = ''
+        /run/wrappers/bin/fusermount -uz %h/GoogleDrive || true
+      '';
+
+      # Automatisch neu starten, falls die Verbindung mal abbricht
       Restart = "on-failure";
       RestartSec = "10s";
     };
+  };
 
-    Install = {
-      WantedBy = ["default.target"]; # Startet beim Einloggen
+  # 1. Der Service (Was soll ausgeführt werden?)
+  systemd.user.services.rclone-bisync = {
+    description = "Bidirektionaler Google Drive Sync";
+    serviceConfig = {
+      Type = "oneshot";
+      # %h ist der Platzhalter für dein Home-Verzeichnis
+      ExecStart = "${pkgs.rclone}/bin/rclone bisync gdrive:/ %h/CloudSync --vfs-cache-mode writes";
     };
+  };
+
+  # 2. Der Timer (Wann soll es ausgeführt werden?)
+  systemd.user.timers.rclone-bisync = {
+    description = "Timer für GDrive Sync alle 5 Minuten";
+    timerConfig = {
+      OnBootSec = "2m"; # Erster Start 2 Min nach dem Booten
+      OnUnitActiveSec = "5m"; # Danach alle 5 Minuten
+    };
+    wantedBy = ["timers.target"]; # Sorgt dafür, dass der Timer startet
   };
 }
