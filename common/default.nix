@@ -71,33 +71,25 @@ in {
 
   systemd.user.services.rclone-gdrive = {
     description = "Google Drive Mount (rclone)";
-    # Der Service startet erst, wenn das Internet da ist
     after = ["network-online.target"];
-    wantedBy = [
-      "default.target"
-      "graphical-session.target"
-    ];
+    wantedBy = ["default.target"]; # graphical-session ist oft zu spät/unzuverlässig
+
+    # Hier fügen wir den Pfad zu den Wrappern hinzu, damit rclone fusermount findet
+    path = ["/run/wrappers" pkgs.rclone];
+
     serviceConfig = {
       Type = "simple";
-      # Wir erstellen den Ordner sicherheitshalber vorher
       ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/GoogleDrive";
 
-      # WICHTIG: KEIN --daemon hier!
-      # --vfs-cache-mode writes ist wichtig, damit du Dateien bearbeiten kannst
+      # Wir entfernen --uid und --gid komplett, da rclone als User
+      # diese IDs automatisch richtig setzt.
       ExecStart = ''
         ${pkgs.rclone}/bin/rclone mount gdrive:/ %h/GoogleDrive \
           --vfs-cache-mode writes \
-          --umask 0022 \
-          --uid $(id -u) \
-          --gid $(id -g)
+          --umask 0022
       '';
 
-      # Sauber unmounten beim Beenden
-      ExecStop = ''
-        /run/wrappers/bin/fusermount -uz %h/GoogleDrive || true
-      '';
-
-      # Automatisch neu starten, falls die Verbindung mal abbricht
+      ExecStop = "/run/wrappers/bin/fusermount -uz %h/GoogleDrive";
       Restart = "on-failure";
       RestartSec = "10s";
     };
@@ -109,7 +101,7 @@ in {
     serviceConfig = {
       Type = "oneshot";
       # %h ist der Platzhalter für dein Home-Verzeichnis
-      ExecStart = "${pkgs.rclone}/bin/rclone bisync gdrive:/ %h/CloudSync --vfs-cache-mode writes";
+      ExecStart = "${pkgs.rclone}/bin/rclone bisync gdrive:/ %h/Meine\ Dateien/ --vfs-cache-mode writes";
     };
   };
 
