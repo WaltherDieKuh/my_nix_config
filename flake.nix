@@ -4,8 +4,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
+    #hyprland.url = "github:hyprwm/Hyprland";
+    #hyprland.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:derhalbgrieche/nixvim";
@@ -24,7 +24,7 @@
     self,
     nixpkgs,
     home-manager,
-    hyprland,
+    #hyprland,
     stylix,
     minesddm,
     ...
@@ -44,15 +44,16 @@
     nixosConfigurations = {
       homePC = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs outputs; };
+        specialArgs = {inherit inputs outputs;};
         modules = [
           ./hosts/PC/hardware-configuration.nix
           ./hosts/PC/homePC.nix
           minesddm.nixosModules.default
           inputs.minegrub-theme.nixosModules.default
           stylix.nixosModules.stylix
-          home-manager.nixosModules.home-manager{
-	    home-manager.useGlobalPkgs = true;
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "backup";
             home-manager.users.willi = {
@@ -61,11 +62,11 @@
                 ./home/willi.nix
                 ./modules/default.nix
                 ./modules/pc.nix
-              ]; 
+              ];
             };
           }
-          
-          hyprland.nixosModules.default
+
+          #hyprland.nixosModules.default
 
           # Das Overlay-Modul wird hier als letztes Element eingefügt
           (
@@ -156,9 +157,7 @@
             };
           }
 
-          hyprland.nixosModules.default
-          
-
+          #hyprland.nixosModules.default
 
           # Das Overlay-Modul wird hier als letztes Element eingefügt
           (

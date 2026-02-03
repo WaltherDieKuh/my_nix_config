@@ -75,7 +75,10 @@ in {
     wantedBy = ["default.target"]; # graphical-session ist oft zu spät/unzuverlässig
 
     # Hier fügen wir den Pfad zu den Wrappern hinzu, damit rclone fusermount findet
-    path = ["/run/wrappers" pkgs.rclone];
+    path = [
+      "/run/wrappers"
+      pkgs.rclone
+    ];
 
     serviceConfig = {
       Type = "simple";
@@ -95,23 +98,28 @@ in {
     };
   };
 
-  # 1. Der Service (Was soll ausgeführt werden?)
+  # 1. Der Service (Der eigentliche Befehl)
   systemd.user.services.rclone-bisync = {
-    description = "Bidirektionaler Google Drive Sync";
+    description = "Google Drive Bidirektionaler Sync";
+    # Der Dienst wartet, bis das Netzwerk bereit ist
+    after = ["network-online.target"];
+
     serviceConfig = {
       Type = "oneshot";
-      # %h ist der Platzhalter für dein Home-Verzeichnis
-      ExecStart = "${pkgs.rclone}/bin/rclone bisync gdrive:/ %h/Meine\ Dateien/ --vfs-cache-mode writes";
+      # Der Befehl für den regelmäßigen Sync (OHNE --resync!)
+      ExecStart = "${pkgs.rclone}/bin/rclone bisync \"gdrive:/Meine Dateien\" \"%h/Meine Dateien\"";
+      # Falls der Sync fehlschlägt, versuchen wir es beim nächsten Mal wieder
+      Restart = "no";
     };
   };
 
-  # 2. Der Timer (Wann soll es ausgeführt werden?)
+  # 2. Der Timer (Der Wecker für den Service)
   systemd.user.timers.rclone-bisync = {
-    description = "Timer für GDrive Sync alle 5 Minuten";
+    description = "Timer für rclone bisync alle 15 Minuten";
     timerConfig = {
-      OnBootSec = "2m"; # Erster Start 2 Min nach dem Booten
-      OnUnitActiveSec = "5m"; # Danach alle 5 Minuten
+      OnBootSec = "5m"; # Erster Start 5 Min nach dem Booten
+      OnUnitActiveSec = "15m"; # Danach alle 15 Minuten
     };
-    wantedBy = ["timers.target"]; # Sorgt dafür, dass der Timer startet
+    wantedBy = ["timers.target"];
   };
 }

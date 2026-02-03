@@ -25,6 +25,10 @@
       boot-options-count = 4;
     };
   };
+  boot.loader.grub.useOSProber = true;
+
+  time.hardwareClockInLocalTime = true;
+
   boot.plymouth = {
     enable = true;
     theme = "minecraft";
@@ -77,6 +81,7 @@
       "audio"
       "input"
       "docker"
+      "cdrom"
     ];
     shell = pkgs.fish;
   };
@@ -119,6 +124,8 @@
     nerd-fonts.fira-code
     noto-fonts
   ];
+
+  programs.k3b.enable = true;
 
   home-manager.users.willi.wayland.windowManager.hyprland.extraConfig = ''
 
