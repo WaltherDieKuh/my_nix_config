@@ -1,8 +1,8 @@
 # hyprpaper.nix
 {pkgs, ...}: let
   wallpaperPaths = [
-    #   ./wallpapers/BastiGHG1.jpg
-    #   ./wallpapers/BastiGHG2.jpg
+       ./wallpapers/BastiGHG1.jpg
+       ./wallpapers/BastiGHG2.jpg
     ./wallpapers/minecraft1.jpg
     ./wallpapers/minecraft2.jpg
   ];
@@ -36,8 +36,4 @@ in {
     '';
   };
 
-  # 4. Skript in Hyprland ausführen
-  wayland.windowManager.hyprland.extraConfig = ''
-    exec-once = $HOME/.config/hypr/scripts/set_random_wallpaper.sh
-  '';
-}
+
