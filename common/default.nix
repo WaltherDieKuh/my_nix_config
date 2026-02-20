@@ -61,6 +61,8 @@ in {
     neovim
     rclone
     fuse
+    texliveFull
+    python315
   ];
   programs.fuse.enable = true;
   programs.fuse.userAllowOther = true;

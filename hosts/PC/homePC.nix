@@ -129,11 +129,16 @@
 
   home-manager.users.willi.wayland.windowManager.hyprland.extraConfig = ''
 
-    monitor=DP-2, 2560x1440@240, 0x0, 1
+        monitor=DP-2, 2560x1440@240, 0x0, 1
 
-    monitor=DP-3, 1920x1080@100, -1920x180, 1
+        monitor=DP-3, 1920x1080@100, -1920x180, 1
 
-    monitor=HDMI-A-1, 1920x1080@100, 2560x180, 1
+        monitor=HDMI-A-1, 1920x1080@100, 2560x180, 1
+
+        device {
+        name = wacom-intuos-bt-s-pen
+        output = DP-2
+    }
 
   '';
 
