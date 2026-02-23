@@ -52,7 +52,7 @@
       address = "wilhelm.woelkner@fh-erfurt.de";
       userName = "wi2785wo";
       flavor = "plain";
-      realName = "Vasilis Manetas";
+      realName = "Wilhelm Wölkner";
       primary = true;
       imap = {
         host = "imap.fh-erfurt.de";

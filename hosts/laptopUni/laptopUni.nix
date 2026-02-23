@@ -6,8 +6,8 @@
   ...
 }: {
   imports = [
-    ../common/default.nix
-    ../modules/neovim.nix
+    ../../common/default.nix
+    ../../modules/neovim.nix
   ];
 
   boot.loader.systemd-boot.enable = false;
