@@ -2,7 +2,7 @@
 {
   imports = [
     ./kitty.nix
-    ./hyprpanel.nix
+    ./waybar/waybar.nix
     ./hyprland/hyprland.nix
     ./hyprpaper/hyprpaper.nix
     ./email.nix
