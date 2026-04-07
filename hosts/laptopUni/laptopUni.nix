@@ -3,12 +3,31 @@
   config,
   pkgs,
   lib,
+  inputs,
+  outputs,
   ...
 }: {
   imports = [
     ../../common/default.nix
     ../../modules/neovim.nix
   ];
+
+  # Overlay-Einbindung
+  nixpkgs.overlays = [ outputs.overlays.custom ];
+
+  # Home-Manager Konfiguration
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension = "backup";
+    users.willi = {
+      imports = [
+        inputs.stylix.homeModules.stylix
+        ../../home/willi.nix
+        ../../modules/default.nix
+      ];
+    };
+  };
 
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;

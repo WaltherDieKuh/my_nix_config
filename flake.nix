@@ -52,26 +52,6 @@
           inputs.minegrub-theme.nixosModules.default
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
-            home-manager.users.willi = {
-              imports = [
-                stylix.homeModules.stylix
-                ./home/willi.nix
-                ./modules/default.nix
-                ./modules/pc.nix
-              ];
-            };
-          }
-
-          #hyprland.nixosModules.default
-
-          # Das Overlay-Modul wird hier als letztes Element eingefügt
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ overlays.custom ];
-          })
         ];
       };
 
@@ -84,32 +64,9 @@
           ./hosts/laptopUni/hardware-configuration.nix
           ./hosts/laptopUni/laptopUni.nix
           minesddm.nixosModules.default
-
           inputs.minegrub-theme.nixosModules.default
-
           stylix.nixosModules.stylix
-
           home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
-
-            home-manager.users.willi = {
-              imports = [
-                stylix.homeModules.stylix
-                ./home/willi.nix
-                ./modules/default.nix
-              ];
-            };
-          }
-
-          #hyprland.nixosModules.default
-
-          # Das Overlay-Modul wird hier als letztes Element eingefügt
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ overlays.custom ];
-          })
         ];
       };
     };
