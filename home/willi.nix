@@ -12,7 +12,7 @@
     hyprpaper
     wl-clipboard
     jetbrains-toolbox
-    helvum
+    crosspipe
     docker
     tor-browser
     lmms

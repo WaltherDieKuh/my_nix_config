@@ -95,7 +95,7 @@
     zip
     unzip
     sleuthkit
-    wineWowPackages.waylandFull
+    wineWow64Packages.waylandFull
     htop
     btop
     wireplumber
