@@ -43,9 +43,69 @@
                 name = "Google Calendar";
                 url = "https://calendar.google.com";
               }
+              {
+                name = "FHE";
+                url = "https://fh-erfurt.de";
+              }
+              {
+                name = "FH-Mail";
+                url = "https://fhemail.fh-erfurt.de/";
+              }
+              {
+                name = "GitHub";
+                url = "https://github.com";
+              }
+              {
+                name = "FH GitLab";
+                url = "https://git.ai.fh-erfurt.de";
+              }
             ];
           }
         ];
+      };
+
+      settings = {
+        # --- General UX ---
+        "browser.startup.page" = 3; # Start where you left off
+        "browser.aboutConfig.showWarning" = false;
+        
+        # --- Privacy & Tracking Protection ---
+        "browser.contentblocking.category" = "strict";
+        "privacy.donottrackheader.enabled" = true;
+        "privacy.trackingprotection.enabled" = true;
+        "privacy.trackingprotection.socialtracking.enabled" = true;
+        
+        # --- Disable Telemetry & Data Collection ---
+        "datareporting.healthreport.uploadEnabled" = false;
+        "datareporting.policy.dataSubmissionEnabled" = false;
+        "toolkit.telemetry.archive.enabled" = false;
+        "toolkit.telemetry.bhrPing.enabled" = false;
+        "toolkit.telemetry.enabled" = false;
+        "toolkit.telemetry.firstShutdownPing.enabled" = false;
+        "toolkit.telemetry.hybridContent.enabled" = false;
+        "toolkit.telemetry.newProfilePing.enabled" = false;
+        "toolkit.telemetry.reportingpolicy.firstRun" = false;
+        "toolkit.telemetry.shutdownPingSender.enabled" = false;
+        "toolkit.telemetry.unified" = false;
+        "toolkit.telemetry.updatePing.enabled" = false;
+        "browser.ping-centre.telemetry" = false;
+        "browser.newtabpage.activity-stream.telemetry" = false;
+        "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+        
+        # --- Disable Pocket, Sponsored Content & Snippets ---
+        "extensions.pocket.enabled" = false;
+        "browser.newtabpage.activity-stream.showSponsored" = false;
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+        "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+        
+        # --- Secure connection (HTTPS always) ---
+        "dom.security.https_only_mode" = true;
+        "dom.security.https_only_mode_ever_enabled" = true;
+        
+        # --- Search Bar & Suggestions ---
+        "browser.search.suggest.enabled" = false;
+        "browser.urlbar.suggest.searches" = false;
+        "browser.urlbar.showSearchSuggestionsFirst" = false;
       };
     };
     policies = {
@@ -60,6 +120,10 @@
         };
         "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
+          installation_mode = "force_installed";
+        };
+        "browserpass@maximbaz.com" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/browserpass-ce/latest.xpi";
           installation_mode = "force_installed";
         };
       };
