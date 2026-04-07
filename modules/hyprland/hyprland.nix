@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  services.swayosd.enable = true;
+
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -141,6 +143,9 @@
 
         # Scroll through existing workspaces with mod + scroll
         "$mod, mouse_down, workspace, e+1"
+
+        ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
+        ", XF86AudioMicMute, exec, swayosd-client --input-volume mute-toggle"
       ];
 
       # Mouse bindings
@@ -150,18 +155,23 @@
       ];
 
       binde = [
-        ", XF86MonBrightnessUp, exec, brightnessctl set +5"
-
-        ", XF86MonBrightnessDown, exec, brightnessctl set 5-"
+        ", XF86MonBrightnessUp, exec, swayosd-client --brightness raise"
+        ", XF86MonBrightnessDown, exec, swayosd-client --brightness lower"
+        ", XF86AudioRaiseVolume, exec, swayosd-client --output-volume raise"
+        ", XF86AudioLowerVolume, exec, swayosd-client --output-volume lower"
       ];
+
+
       # Window rules
       windowrule = [
         "match:class fl64.exe, float 1, fullscreen 0, suppress_event fullscreen fullscreenoutput, opacity 1.0 override 1.0 1.0"
+        "match:class ^(pavucontrol)$, float 1, stay_focused 1, persistent_size 1, dim_around 1"
+        "match:class ^(nm-connection-editor)$, float 1"
       ];
 
       # Auto-start applications
       exec-once = [
-        "hyprpanel"
+        "waybar"
         "$HOME/.config/hypr/scripts/set_random_wallpaper.sh"
       ];
     };

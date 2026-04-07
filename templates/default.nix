@@ -1,3 +1,6 @@
 {
-  java.path = ./java;
+  java = {
+    path = ./java;
+    description = "Java Template";
+  };
 }

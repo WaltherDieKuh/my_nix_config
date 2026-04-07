@@ -66,7 +66,10 @@ in {
   programs.nix-ld.enable = true;
 
   # Overlay-Einbindung
-  nixpkgs.overlays = [ outputs.overlays.custom ];
+  nixpkgs.overlays = [ 
+    outputs.overlays.custom 
+    outputs.overlays.neovim
+  ];
 
   # Home-Manager Konfiguration defaults
   home-manager = {
@@ -155,7 +158,7 @@ in {
     zip
     unzip
     sleuthkit
-    wineWowPackages.waylandFull
+    wineWow64Packages.waylandFull
     htop
     btop
     wireplumber

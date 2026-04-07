@@ -7,7 +7,10 @@
   home.packages = with pkgs; [
     magicq
     firefox
+    pavucontrol
     monocraft
+    networkmanagerapplet
+    pasystray
     brightnessctl
     hyprpaper
     wl-clipboard
