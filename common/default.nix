@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   inputs,
   outputs,
   config,
@@ -12,14 +13,17 @@ in {
   ];
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  # Sound and Services
   services = {
     blueman.enable = true;
     gvfs.enable = true;
     flatpak.enable = true;
-  };
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = " set -g fish_greeting ";
+    pipewire = {
+      enable = true;
+      jack.enable = true;
+    };
+    upower.enable = true;
+    xserver.enable = false;
   };
 
   networking = {
@@ -40,8 +44,131 @@ in {
     };
   };
 
+  # Network and User Basics
+  time.timeZone = "Europe/Berlin";
+  i18n.defaultLocale = "de_DE.UTF-8";
+  console.keyMap = "de";
+
+  environment.variables = {
+    XKB_DEFAULT_LAYOUT = "de";
+    XKB_DEFAULT_VARIANT = "nodeadkeys";
+  };
+
+  # Common Nix settings
+  nix.settings = {
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
+
   nixpkgs.config.allowUnfree = true;
   programs.nix-ld.enable = true;
+
+  # Overlay-Einbindung
+  nixpkgs.overlays = [ outputs.overlays.custom ];
+
+  # Home-Manager Konfiguration defaults
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    backupFileExtension = "backup";
+    users.willi = {
+      imports = [
+        inputs.stylix.homeModules.stylix
+        ../home/willi.nix
+        ../modules/default.nix
+      ];
+    };
+  };
+
+  # Boot and Grub Theme (minecraft)
+  boot.loader.systemd-boot.enable = false;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub = {
+    enable = true;
+    device = "nodev";
+    efiSupport = true;
+    minegrub-theme = {
+      enable = true;
+      splash = "C++ - alles kann, nichts muss";
+      background = "background_options/1.8  - [Classic Minecraft].png";
+      boot-options-count = 4;
+    };
+  };
+  boot.plymouth = {
+    enable = true;
+    theme = "minecraft";
+    themePackages = [pkgs.minecraft-plymouth-theme];
+  };
+  boot.kernelParams = [
+    "quiet"
+    "splash"
+  ];
+  boot.initrd.availableKernelModules = lib.mkBefore ["i915"];
+
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = " set -g fish_greeting ";
+  };
+  programs.hyprland.enable = true;
+
+  system.stateVersion = "25.05";
+
+  users.users.willi = {
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "audio"
+      "input"
+    ];
+    shell = pkgs.fish;
+  };
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
+    noto-fonts
+  ];
+
+  environment.systemPackages = with pkgs; [
+    neovim
+    rclone
+    fuse
+    texliveFull
+    python315
+    vim
+    git
+    git-lfs
+    papirus-icon-theme
+    hicolor-icon-theme
+    font-awesome
+    emote
+    nemo
+    comma
+    xournalpp
+    networkmanager
+    spotify
+    localsend
+    zip
+    unzip
+    sleuthkit
+    wineWowPackages.waylandFull
+    htop
+    btop
+    wireplumber
+    libgtop
+    bluez
+    bluez-tools
+    dart-sass
+    upower
+    gvfs
+    gtksourceview3
+    libsoup_3
+    bottles
+  ];
   networking.hosts = {
     "127.0.0.1" = ["localhost"];
   };
@@ -57,18 +184,9 @@ in {
     enable = true;
     enableFishIntegration = true;
   };
-  environment.systemPackages = with pkgs; [
-    neovim
-    rclone
-    fuse
-    texliveFull
-    python315
-  ];
   programs.fuse.enable = true;
   programs.fuse.userAllowOther = true;
-  nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays;
-  };
+  
   # RClone Google Drive service
 
   systemd.user.services.rclone-gdrive = {

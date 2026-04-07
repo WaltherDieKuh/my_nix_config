@@ -12,7 +12,7 @@
     hyprpaper
     wl-clipboard
     jetbrains-toolbox
-    helvum
+    crosspipe
     docker
     tor-browser
     lmms
@@ -20,8 +20,15 @@
 
   home.pointerCursor.hyprcursor.enable = true;
 
-  programs.home-manager.enable = true;
-  programs.gemini-cli.enable = true;
+  programs = {
+    home-manager.enable = true;
+    gemini-cli.enable = true;
+    fastfetch.enable = true;
+    vscode.enable = true;
+    rofi.enable = true;
+    vesktop.enable = true;
+    fish.enable = true;
+  };
 
   home.stateVersion = "25.05";
 
