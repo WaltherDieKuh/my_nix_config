@@ -4,6 +4,8 @@
   inputs,
   outputs,
   config,
+  isDesktop ? false,
+  isLaptop ? false,
   ...
 }: let
   system = pkgs.stdenv.hostPlatform.system;
@@ -28,6 +30,10 @@ in {
 
   networking = {
     firewall = rec {
+      # Wir öffnen Port 5353 (UDP) für mDNS (Spotify Connect Discovery / Zeroconf)
+      # und TCP/UDP 5000 explizit für den spotifyd Daemon
+      allowedTCPPorts = [ 5000 ];
+      allowedUDPPorts = [ 5353 5000 ];
       allowedTCPPortRanges = [
         {
           from = 1714;
@@ -75,6 +81,7 @@ in {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
+    extraSpecialArgs = { inherit isDesktop isLaptop inputs outputs; };
     backupFileExtension = "backup";
     users.willi = {
       imports = [
@@ -153,7 +160,6 @@ in {
     comma
     xournalpp
     networkmanager
-    spotify
     localsend
     zip
     unzip

@@ -14,8 +14,12 @@
   cups,
   libGL,
   libGLU,
-  xorg,
   libxcb,
+  libx11,
+  libxcb-wm,
+  libxcb-image,
+  libxcb-keysyms,
+  libxcb-render-util,
   libxkbcommon,
   udev,
   zlib,
@@ -69,12 +73,12 @@ in
       libGLU
 
       # X11/XCB stack
-      xorg.libX11
+      libx11
       libxcb
-      xorg.xcbutilwm # libxcb-icccm.so.4
-      xorg.xcbutilimage # libxcb-image.so.0
-      xorg.xcbutilkeysyms # libxcb-keysyms.so.1
-      xorg.xcbutilrenderutil # libxcb-render-util.so.0
+      libxcb-wm # libxcb-icccm.so.4
+      libxcb-image # libxcb-image.so.0
+      libxcb-keysyms # libxcb-keysyms.so.1
+      libxcb-render-util # libxcb-render-util.so.0
       libxkbcommon # libxkbcommon{,-x11}.so
 
       # Printing

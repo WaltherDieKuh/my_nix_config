@@ -1,10 +1,10 @@
 {inputs, ...}: {
   neovim = _: prev: {
-    neovim = inputs.nixvim.packages.${prev.system}.default;
+    neovim = inputs.nixvim.packages.${prev.stdenv.hostPlatform.system}.default;
   };
   stable-packages = final: _prev: {
     stable = import inputs.nixpkgs-stable {
-      system = final.system;
+      system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
   };

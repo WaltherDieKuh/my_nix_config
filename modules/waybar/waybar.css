@@ -20,7 +20,7 @@ tooltip {
     border: 2px solid #89b4fa;
 }
 
-#custom-launcher, #workspaces, #window, #mpris, #clock, #pulseaudio, #network, #battery, #tray, #custom-notification {
+#custom-launcher, #workspaces, #window, #mpris, #clock, #pulseaudio, #network, #battery, #tray, #cpu, #custom-notification {
     background: rgba(49, 50, 68, 0.5);
     border-radius: 10px;
     margin: 6px 4px;
@@ -52,6 +52,7 @@ tooltip {
 
 #mpris { color: #a6e3a1; }
 #clock { color: #f38ba8; }
+#cpu { color: #f9e2af; }
 #network { color: #89dceb; }
 #pulseaudio { color: #fab387; }
 #battery { color: #f9e2af; }

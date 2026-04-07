@@ -1,21 +1,25 @@
 {
   config,
   pkgs,
+  lib,
+  isDesktop, # Von specialArgs aus der flake.nix geerbt
+  isLaptop,  # Von specialArgs aus der flake.nix geerbt
   ...
 }: {
   services.swayosd.enable = true;
 
   wayland.windowManager.hyprland = {
     enable = true;
-    settings = {
-      # Monitor configuration
-      monitor = ",preferred,auto,1";
 
-      # Environment variables
+    settings = {
+      # Allgemeine Base-Konfiguration, die FÜR BEIDE gilt:
       env = [
         "XCURSOR_SIZE,24"
         "QT_QPA_PLATFORMTHEME,qt5ct"
       ];
+
+      # Monitor configuration
+      monitor = ",preferred,auto,1";
 
       ecosystem.no_update_news = true;
 
@@ -175,5 +179,28 @@
         "$HOME/.config/hypr/scripts/set_random_wallpaper.sh"
       ];
     };
+
+    # Wir können extraConfig nutzen, um Host-Spezifische Zeilen anzuhängen
+    # mit einer if-Abfrage auf isDesktop / isLaptop
+    extraConfig = ''
+      ${lib.optionalString isDesktop ''
+      # === DESKTOP KONFIGURATION ===
+      monitor=DP-2, 2560x1440@240, 0x0, 1
+      monitor=DP-3, 1920x1080@100, -1920x180, 1
+      monitor=HDMI-A-1, 1920x1080@100, 2560x180, 1
+      
+      device {
+        name = wacom-intuos-bt-s-pen
+        output = DP-2
+      }
+      ''}
+
+      ${lib.optionalString isLaptop ''
+      # === LAPTOP KONFIGURATION ===
+      monitor=eDP-1, preferred, auto, 1
+      # (Optional: Skalierung für Laptop)
+      # monitor=eDP-1, preferred, auto, 1.25 
+      ''}
+    '';
   };
 }

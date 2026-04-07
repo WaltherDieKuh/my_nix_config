@@ -20,15 +20,7 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    #hyprland,
-    stylix,
-    minesddm,
-    ...
-  } @ inputs: let
+  outputs = { self, nixpkgs, home-manager, stylix, minesddm, ... } @ inputs: let
     inherit (self) outputs;
     lib = nixpkgs.lib // home-manager.lib;
     systems = [
@@ -44,11 +36,16 @@
     nixosConfigurations = {
       homePC = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs outputs;};
+        # Hier geben wir isDesktop und isLaptop als Custom-Variablen mit:
+        specialArgs = {
+          inherit inputs outputs;
+          isDesktop = true;
+          isLaptop = false;
+        };
         modules = [
           ./hosts/PC/hardware-configuration.nix
           ./hosts/PC/homePC.nix
-          minesddm.nixosModules.default
+          inputs.minesddm.nixosModules.default
           inputs.minegrub-theme.nixosModules.default
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager
@@ -59,11 +56,13 @@
         system = "x86_64-linux";
         specialArgs = {
           inherit inputs outputs;
+          isDesktop = false;
+          isLaptop = true;
         };
         modules = [
           ./hosts/laptopUni/hardware-configuration.nix
           ./hosts/laptopUni/laptopUni.nix
-          minesddm.nixosModules.default
+          inputs.minesddm.nixosModules.default
           inputs.minegrub-theme.nixosModules.default
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager

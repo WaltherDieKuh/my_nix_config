@@ -20,14 +20,15 @@
           "hyprland/window"
         ];
         modules-center = [
+          "clock"
           "mpris"
         ];
         modules-right = [
+          "cpu"
           "tray"
           "network"
           "pulseaudio"
           "battery"
-          "clock"
           "custom/notification"
         ];
 
@@ -56,17 +57,19 @@
         };
 
         mpris = {
-          format = "{player_icon} {title}";
-          format-paused = "{status_icon} <i>{title}</i>";
+          format = "{player_icon}  {artist} - {title}";
+          format-paused = "{status_icon} <i>{artist} - {title}</i>";
           player-icons = {
             default = "▶";
             mpv = "🎵";
             spotify = "";
+            "spotify-qt" = "";
+            spotifyd = "";
           };
           status-icons = {
             paused = "⏸";
           };
-          max-length = 40;
+          max-length = 50;
         };
 
         clock = {
@@ -117,6 +120,11 @@
         tray = {
           icon-size = 18;
           spacing = 10;
+        };
+
+        cpu = {
+          format = "  {usage}%";
+          tooltip = false;
         };
 
         "custom/notification" = {

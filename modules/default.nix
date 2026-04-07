@@ -7,5 +7,6 @@
     ./hyprpaper/hyprpaper.nix
     ./email.nix
     ./git.nix
+    ./spotifyd.nix
   ];
 }

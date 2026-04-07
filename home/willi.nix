@@ -2,6 +2,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   home.packages = with pkgs; [
@@ -22,6 +23,7 @@
   ];
 
   home.pointerCursor.hyprcursor.enable = true;
+  gtk.gtk4.theme = null;
 
   programs = {
     home-manager.enable = true;
@@ -32,6 +34,8 @@
     vesktop.enable = true;
     fish.enable = true;
   };
+
+  services.playerctld.enable = true;
 
   home.stateVersion = "25.05";
 
