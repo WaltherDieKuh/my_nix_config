@@ -7,7 +7,6 @@
 }: {
   home.packages = with pkgs; [
     magicq
-    firefox
     pavucontrol
     monocraft
     networkmanagerapplet
@@ -20,6 +19,9 @@
     docker
     tor-browser
     lmms
+    
+    rofi-pass-wayland
+    gnupg
   ];
 
   home.pointerCursor.hyprcursor.enable = true;
@@ -30,9 +32,24 @@
     gemini-cli.enable = true;
     fastfetch.enable = true;
     vscode.enable = true;
-    rofi.enable = true;
     vesktop.enable = true;
     fish.enable = true;
+
+    password-store = {
+      enable = true;
+      # pass-import ist wichtig für den Google-CSV Import!
+      package = pkgs.pass.withExtensions (exts: [ exts.pass-import ]);
+    };
+    
+    browserpass = {
+      enable = true;
+      browsers = [ "firefox" ];
+    };
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry-rofi;
   };
 
   services.playerctld.enable = true;
@@ -42,6 +59,8 @@
   imports = [
     ../modules/stylix.nix
     ../modules/stylix-home.nix
+    ../modules/rofi/rofi.nix
+    ../modules/firefox.nix
     ./aliasse.nix
   ];
 }
