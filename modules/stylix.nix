@@ -42,6 +42,6 @@
     targets.vscode.enable = false;
     targets.waybar.enable = false;
     targets.kitty.enable = true;
-    targets.firefox.profileNames = [ "willi" ];
+    targets.firefox.profileNames = ["willi"];
   };
 }

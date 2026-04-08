@@ -1,4 +1,8 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   programs.firefox = {
     enable = true;
     profiles.willi = {
@@ -8,16 +12,27 @@
         default = "ddg";
         engines = {
           "Nix Packages" = {
-            urls = [{
-              template = "https://search.nixos.org/packages";
-              params = [
-                { name = "type"; value = "packages"; }
-                { name = "query"; value = "{searchTerms}"; }
-                { name = "channel"; value = "unstable"; }
-              ];
-            }];
+            urls = [
+              {
+                template = "https://search.nixos.org/packages";
+                params = [
+                  {
+                    name = "type";
+                    value = "packages";
+                  }
+                  {
+                    name = "query";
+                    value = "{searchTerms}";
+                  }
+                  {
+                    name = "channel";
+                    value = "unstable";
+                  }
+                ];
+              }
+            ];
 
-            definedAliases = [ "@nix" ];
+            definedAliases = ["@nix"];
           };
           "bing".metaData.hidden = true;
           "google".metaData.hidden = true;
@@ -68,13 +83,13 @@
         # --- General UX ---
         "browser.startup.page" = 3; # Start where you left off
         "browser.aboutConfig.showWarning" = false;
-        
+
         # --- Privacy & Tracking Protection ---
         "browser.contentblocking.category" = "strict";
         "privacy.donottrackheader.enabled" = true;
         "privacy.trackingprotection.enabled" = true;
         "privacy.trackingprotection.socialtracking.enabled" = true;
-        
+
         # --- Disable Telemetry & Data Collection ---
         "datareporting.healthreport.uploadEnabled" = false;
         "datareporting.policy.dataSubmissionEnabled" = false;
@@ -91,17 +106,17 @@
         "browser.ping-centre.telemetry" = false;
         "browser.newtabpage.activity-stream.telemetry" = false;
         "browser.newtabpage.activity-stream.feeds.telemetry" = false;
-        
+
         # --- Disable Pocket, Sponsored Content & Snippets ---
         "extensions.pocket.enabled" = false;
         "browser.newtabpage.activity-stream.showSponsored" = false;
         "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
-        
+
         # --- Secure connection (HTTPS always) ---
         "dom.security.https_only_mode" = true;
         "dom.security.https_only_mode_ever_enabled" = true;
-        
+
         # --- Search Bar & Suggestions ---
         "browser.search.suggest.enabled" = false;
         "browser.urlbar.suggest.searches" = false;

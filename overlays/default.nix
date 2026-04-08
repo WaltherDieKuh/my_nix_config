@@ -10,9 +10,11 @@
   };
   custom = final: prev: {
     magicq = prev.callPackage ../pkgs/magicq.nix {};
-    libsForQt5 = prev.libsForQt5 // {
-      layer-shell-qt = final.kdePackages.layer-shell-qt;
-    };
+    libsForQt5 =
+      prev.libsForQt5
+      // {
+        layer-shell-qt = final.kdePackages.layer-shell-qt;
+      };
     layer-shell-qt = final.kdePackages.layer-shell-qt;
     minecraft-plymouth-theme = prev.stdenv.mkDerivation {
       pname = "minecraft-plymouth-theme";

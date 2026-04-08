@@ -19,9 +19,9 @@
     docker
     tor-browser
     lmms
-    
-    rofi-pass-wayland
+
     gnupg
+    wofi
   ];
 
   home.pointerCursor.hyprcursor.enable = true;
@@ -38,18 +38,23 @@
     password-store = {
       enable = true;
       # pass-import ist wichtig für den Google-CSV Import!
-      package = pkgs.pass.withExtensions (exts: [ exts.pass-import ]);
+      package = pkgs.pass.withExtensions (exts: [exts.pass-import]);
+      settings = {};
     };
-    
+
     browserpass = {
       enable = true;
-      browsers = [ "firefox" ];
+      browsers = ["firefox"];
     };
   };
 
   services.gpg-agent = {
     enable = true;
-    pinentryPackage = pkgs.pinentry-rofi;
+    pinentry.package = pkgs.pinentry-gnome3;
+    # Zeit in Sekunden, bis das Passwort nach inaktivität vergessen wird (hier 24 Stunden)
+    defaultCacheTtl = 86400;
+    # Maximale absolute Zeit in Sekunden, bis das Passwort zwingend neu eingegeben werden muss (hier 3 Tage)
+    maxCacheTtl = 259200;
   };
 
   services.playerctld.enable = true;
@@ -59,8 +64,8 @@
   imports = [
     ../modules/stylix.nix
     ../modules/stylix-home.nix
-    ../modules/rofi/rofi.nix
     ../modules/firefox.nix
+    ../modules/nautilus.nix
     ./aliasse.nix
   ];
 }

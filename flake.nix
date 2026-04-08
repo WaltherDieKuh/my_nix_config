@@ -20,7 +20,14 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, stylix, minesddm, ... } @ inputs: let
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    stylix,
+    minesddm,
+    ...
+  } @ inputs: let
     inherit (self) outputs;
     lib = nixpkgs.lib // home-manager.lib;
     systems = [

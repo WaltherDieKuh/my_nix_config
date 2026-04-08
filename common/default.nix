@@ -32,8 +32,8 @@ in {
     firewall = rec {
       # Wir öffnen Port 5353 (UDP) für mDNS (Spotify Connect Discovery / Zeroconf)
       # und TCP/UDP 5000 explizit für den spotifyd Daemon
-      allowedTCPPorts = [ 5000 ];
-      allowedUDPPorts = [ 5353 5000 ];
+      allowedTCPPorts = [5000];
+      allowedUDPPorts = [5353 5000];
       allowedTCPPortRanges = [
         {
           from = 1714;
@@ -72,8 +72,8 @@ in {
   programs.nix-ld.enable = true;
 
   # Overlay-Einbindung
-  nixpkgs.overlays = [ 
-    outputs.overlays.custom 
+  nixpkgs.overlays = [
+    outputs.overlays.custom
     outputs.overlays.neovim
   ];
 
@@ -81,7 +81,7 @@ in {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit isDesktop isLaptop inputs outputs; };
+    extraSpecialArgs = {inherit isDesktop isLaptop inputs outputs;};
     backupFileExtension = "backup";
     users.willi = {
       imports = [
@@ -156,7 +156,6 @@ in {
     hicolor-icon-theme
     font-awesome
     emote
-    nemo
     comma
     xournalpp
     networkmanager
@@ -195,7 +194,10 @@ in {
   };
   programs.fuse.enable = true;
   programs.fuse.userAllowOther = true;
-  
+
+  # Dconf enables saving settings for GTK apps correctly
+  programs.dconf.enable = true;
+
   # RClone Google Drive service
 
   systemd.user.services.rclone-gdrive = {

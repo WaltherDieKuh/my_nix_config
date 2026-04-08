@@ -13,7 +13,7 @@
         position = "top";
         margin = "8 14 0 14";
         spacing = 10;
-        
+
         modules-left = [
           "custom/launcher"
           "hyprland/workspaces"
@@ -34,7 +34,7 @@
 
         "custom/launcher" = {
           format = " ";
-          on-click = "rofi -show drun";
+          on-click = "wofi --show drun";
           tooltip = false;
         };
 

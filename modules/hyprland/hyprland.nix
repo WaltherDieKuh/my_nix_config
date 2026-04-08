@@ -3,7 +3,7 @@
   pkgs,
   lib,
   isDesktop, # Von specialArgs aus der flake.nix geerbt
-  isLaptop,  # Von specialArgs aus der flake.nix geerbt
+  isLaptop, # Von specialArgs aus der flake.nix geerbt
   ...
 }: {
   services.swayosd.enable = true;
@@ -103,9 +103,9 @@
 
         "$mod, Q, killactive,"
         "$mod, M, exit,"
-        "$mod, E, exec, nemo"
+        "$mod, E, exec, nautilus"
         "$mod, V, togglefloating,"
-        "$mod, Space, exec, rofi -show drun"
+        "$mod, Space, exec, wofi --show drun"
         "$mod, P, pseudo,"
         "$mod, J, togglesplit,"
         "$mod, F, exec, firefox"
@@ -165,7 +165,6 @@
         ", XF86AudioLowerVolume, exec, swayosd-client --output-volume lower"
       ];
 
-
       # Window rules
       windowrule = [
         "match:class fl64.exe, float 1, fullscreen 0, suppress_event fullscreen fullscreenoutput, opacity 1.0 override 1.0 1.0"
@@ -184,22 +183,22 @@
     # mit einer if-Abfrage auf isDesktop / isLaptop
     extraConfig = ''
       ${lib.optionalString isDesktop ''
-      # === DESKTOP KONFIGURATION ===
-      monitor=DP-2, 2560x1440@240, 0x0, 1
-      monitor=DP-3, 1920x1080@100, -1920x180, 1
-      monitor=HDMI-A-1, 1920x1080@100, 2560x180, 1
-      
-      device {
-        name = wacom-intuos-bt-s-pen
-        output = DP-2
-      }
+        # === DESKTOP KONFIGURATION ===
+        monitor=DP-2, 2560x1440@240, 0x0, 1
+        monitor=DP-3, 1920x1080@100, -1920x180, 1
+        monitor=HDMI-A-1, 1920x1080@100, 2560x180, 1
+
+        device {
+          name = wacom-intuos-bt-s-pen
+          output = DP-2
+        }
       ''}
 
       ${lib.optionalString isLaptop ''
-      # === LAPTOP KONFIGURATION ===
-      monitor=eDP-1, preferred, auto, 1
-      # (Optional: Skalierung für Laptop)
-      # monitor=eDP-1, preferred, auto, 1.25 
+        # === LAPTOP KONFIGURATION ===
+        monitor=eDP-1, preferred, auto, 1
+        # (Optional: Skalierung für Laptop)
+        # monitor=eDP-1, preferred, auto, 1.25
       ''}
     '';
   };
