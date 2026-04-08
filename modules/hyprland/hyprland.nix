@@ -153,7 +153,8 @@
         "fullscreen, class:^(.*)$"
       ];
       exec-once = [
-        "[fullscreen] magicq"
+        "waybar"
+        "magicq"
       ];
       misc = {
         disable_hyprland_logo = true; # Deaktiviert das Anime-Logo/Maskottchen

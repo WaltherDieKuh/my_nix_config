@@ -87,6 +87,11 @@
   ];
 
   services.xserver.enable = false;
+  services.displayManager.defaultSession = "hyprland";
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "djj";
+  };
 
   programs.hyprland.enable = true;
 
