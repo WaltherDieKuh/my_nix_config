@@ -31,12 +31,12 @@
     };
   };
 
-  # Dummy .desktop-Eintrag, um den Dienst im App Launcher "sehen" und neustarten zu können
+  # Dummy .desktop-Eintrag, um den Dienst in Rofi "sehen" und neustarten zu können
   xdg.desktopEntries.spotifyd = {
     name = "Spotify Daemon Restart";
     genericName = "Music Player Daemon";
     icon = "spotify";
-    # Ein Klick im Launcher startet den Daemon neu
+    # Ein Klick in Rofi startet den Daemon neu
     exec = "systemctl --user restart spotifyd.service";
     terminal = false;
     categories = ["Audio" "Music"];

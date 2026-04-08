@@ -105,7 +105,7 @@
         "$mod, M, exit,"
         "$mod, E, exec, nautilus"
         "$mod, V, togglefloating,"
-        "$mod, Space, exec, wofi --show drun"
+        "$mod, Space, exec, rofi -show drun"
         "$mod, P, pseudo,"
         "$mod, J, togglesplit,"
         "$mod, F, exec, firefox"

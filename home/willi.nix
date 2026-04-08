@@ -20,8 +20,8 @@
     tor-browser
     lmms
 
+    rofi-pass-wayland
     gnupg
-    wofi
   ];
 
   home.pointerCursor.hyprcursor.enable = true;
@@ -50,7 +50,7 @@
 
   services.gpg-agent = {
     enable = true;
-    pinentry.package = pkgs.pinentry-gnome3;
+    pinentry.package = pkgs.pinentry-rofi;
     # Zeit in Sekunden, bis das Passwort nach inaktivität vergessen wird (hier 24 Stunden)
     defaultCacheTtl = 86400;
     # Maximale absolute Zeit in Sekunden, bis das Passwort zwingend neu eingegeben werden muss (hier 3 Tage)
@@ -64,6 +64,7 @@
   imports = [
     ../modules/stylix.nix
     ../modules/stylix-home.nix
+    ../modules/rofi/rofi.nix
     ../modules/firefox.nix
     ../modules/nautilus.nix
     ./aliasse.nix
