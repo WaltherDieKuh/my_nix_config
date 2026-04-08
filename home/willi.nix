@@ -34,6 +34,8 @@
     vscode.enable = true;
     vesktop.enable = true;
     fish.enable = true;
+    eza.enable = true;
+    bat.enable = true;
 
     password-store = {
       enable = true;
@@ -67,6 +69,7 @@
     ../modules/rofi/rofi.nix
     ../modules/firefox.nix
     ../modules/nautilus.nix
+    ../modules/starship.nix
     ./aliasse.nix
   ];
 }

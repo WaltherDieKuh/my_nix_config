@@ -6,10 +6,13 @@
 }: {
   # Definiert Aliase für alle Shells, die Home-Manager verwaltet (z.B. bash, zsh)
   home.shellAliases = {
-    ls = "ls --color=auto";
-    l = "ls -CF";
-    la = "ls -A";
-    ll = "ls -alF";
+    # Modernere Terminal-Tools (eza mit Icons statt ls, bat statt cat)
+    ls = "eza --icons";
+    l = "eza -CF --icons";
+    la = "eza -A --icons";
+    ll = "eza -alF --icons";
+    tree = "eza --tree --icons";
+    cat = "bat";
 
     rebuild = "sudo nixos-rebuild switch --flake .#laptopUni";
     search = "nix search nixpkgs";
