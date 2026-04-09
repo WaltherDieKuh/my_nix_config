@@ -10,7 +10,7 @@
     # Upstream test failures resolved; use default kitty package (>= 0.44).
     package = pkgs.kitty;
     settings = {
-      font_family = "Maple Mono NF";
+      font_family = "JetBrainsMono Nerd Font";
       font_size = 12;
       wheel_scroll_min_lines = 1;
       window_padding_width = 4;

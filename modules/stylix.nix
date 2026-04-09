@@ -41,7 +41,7 @@
     targets.hyprland.enable = false;
     targets.vscode.enable = false;
     targets.waybar.enable = false;
-    targets.kitty.enable = true;
+    targets.kitty.enable = false;
     targets.firefox.profileNames = ["willi"];
   };
 }

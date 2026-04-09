@@ -10,7 +10,7 @@ in {
 
   programs.rofi = {
     enable = true;
-    font = "JetBrainsMono Nerd Font 14";
+    font = "Monocraft 14";
     theme = let
       # Define some nice colors (TokyoNight inspired matching your system)
       bg0 = "#1a1b26E6"; # semi-transparent

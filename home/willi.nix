@@ -9,6 +9,7 @@
     magicq
     pavucontrol
     monocraft
+    nerd-fonts.symbols-only
     networkmanagerapplet
     pasystray
     brightnessctl
