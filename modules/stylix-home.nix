@@ -6,6 +6,6 @@
       dark = "Papirus-Dark";
       light = "Papirus-Light";
     };
-    targets.kitty.variant256Colors = true;
+    targets.kitty.enable = false;
   };
 }

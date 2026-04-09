@@ -9,9 +9,12 @@
 
     # Upstream test failures resolved; use default kitty package (>= 0.44).
     package = pkgs.kitty;
+    font = {
+      name = "JetBrainsMono Nerd Font"; # Non-mono variant ist für Kitty empfohlen
+      package = pkgs.nerd-fonts.jetbrains-mono;
+      size = 12;
+    };
     settings = {
-      font_family = "JetBrainsMono Nerd Font";
-      font_size = 12;
       wheel_scroll_min_lines = 1;
       window_padding_width = 4;
       confirm_os_window_close = 0;
@@ -27,7 +30,6 @@
       tab_bar_style = "powerline";
       #tab_bar_style = "fade";
       enabled_layouts = "splits";
-      open_url_with_default = true;
       detect_urls = true;
       allow_remote_control = true;
     };
@@ -40,7 +42,6 @@
     extraConfig = ''
       background_opacity 0.85
       background_blur 64
-
 
       #open_url_with default
       url_prefixes file ftp ftps gemini git gopher http https irc ircs kitty sftp ssh

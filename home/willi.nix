@@ -6,6 +6,7 @@
   ...
 }: {
   home.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
     magicq
     pavucontrol
     monocraft
@@ -34,9 +35,16 @@
     fastfetch.enable = true;
     vscode.enable = true;
     vesktop.enable = true;
-    fish.enable = true;
     eza.enable = true;
     bat.enable = true;
+
+    fish = {
+    enable = true;
+    interactiveShellInit = ''
+      # Zwingt Fish dazu, runde Ecken korrekt als Breite 1 zu berechnen
+      set -g fish_ambiguous_width 1
+    '';
+    };
 
     password-store = {
       enable = true;
@@ -48,6 +56,10 @@
     browserpass = {
       enable = true;
       browsers = ["firefox"];
+    };
+    direnv = {
+    enable = true;
+    nix-direnv.enable = true;
     };
   };
 
@@ -61,6 +73,8 @@
   };
 
   services.playerctld.enable = true;
+
+  fonts.fontconfig.enable = true;
 
   home.stateVersion = "25.05";
 
