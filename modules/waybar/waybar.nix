@@ -146,12 +146,14 @@ in {
         modules-left = [
           "custom/launcher"
           "hyprland/workspaces"
+          
+        ];
+        modules-center = [ "pulseaudio" ];
+        modules-right = [
           "cpu"
           "custom/gpu"
-          "memory"
-        ];
-        modules-center = [];
-        modules-right = [ "pulseaudio" ];
+          "memory" 
+          ];
       } // commonModules;
 
       centerBar = barConfig // {
