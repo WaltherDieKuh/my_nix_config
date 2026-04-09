@@ -17,6 +17,6 @@
     rebuild = "sudo nixos-rebuild switch --flake /home/willi/my_nix_config#laptopUni";
     search = "nix search nixpkgs";
     gc = "sudo nix-collect-garbage -d";
-    update = "nix flake update /home/willi/my_nix_config && rebuild";
+    update = "cd /home/willi/my_nix_config && sudo nix flake update && rebuild && cd -";
   };
 }
