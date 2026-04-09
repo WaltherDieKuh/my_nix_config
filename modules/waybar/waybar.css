@@ -61,6 +61,9 @@ tooltip {
     color: #f38ba8;
     animation: blink 1s linear infinite;
 }
+#memory { color: #1ec85d; }
+#custom-gpu { color: #4c1dd8; }
+#bluetooth { color: #d13dcc; }
 
 @keyframes blink { 50% { color: transparent; } }
 
