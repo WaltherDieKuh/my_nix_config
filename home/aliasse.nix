@@ -14,8 +14,9 @@
     tree = "eza --tree --icons";
     cat = "bat";
 
-    rebuild = "sudo nixos-rebuild switch --flake .#laptopUni";
+    rebuild = "sudo nixos-rebuild switch --flake /home/willi/my_nix_config#laptopUni";
     search = "nix search nixpkgs";
-    gc = "sudo nix-collect-garbage";
+    gc = "sudo nix-collect-garbage -d";
+    update = "nix flake update /home/willi/my_nix_config && rebuild";
   };
 }
