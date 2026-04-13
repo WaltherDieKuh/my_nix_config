@@ -75,6 +75,23 @@
           home-manager.nixosModules.home-manager
         ];
       };
+
+      serverHome = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit inputs outputs;
+          # Zusätzliche Variablen, falls du diese in Modulen nutzt
+          isDesktop = false;
+          isLaptop = true; # Physisch gesehen ein Laptop
+        };
+        modules = [
+          ./hosts/serverHome/hardware-configuration.nix
+          ./hosts/serverHome/serverHome.nix
+          
+          # Optional, falls du auch auf dem Server Home-Manager nutzt:
+          home-manager.nixosModules.home-manager
+        ];
+      };
     };
   };
 }

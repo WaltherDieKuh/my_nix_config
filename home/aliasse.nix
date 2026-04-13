@@ -25,7 +25,7 @@
       description = "Initialisiert ein Nix-Template mit direnv";
       body = ''
         if test -z "$argv[1]"
-          echo "Bitte ein Template angeben! (z.B. rust, cpp, java)"
+          echo "Bitte ein Template angeben! (z.B. rust, cpp, java, python)"
           return 1
         end
         
