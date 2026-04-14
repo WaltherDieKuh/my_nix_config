@@ -49,6 +49,15 @@
     };
   };
 
+  # ===== VPN / Tailscale =====
+  services.tailscale = {
+    enable = true;
+    # Optional: Für den Login ohne Browser. Den Key erstellst du im Tailscale Admin-Panel.
+    # Lege den Key auf dem Server einfach in eine Datei (z.B. /root/tailscale_key)
+    # und entferne das "#" vor der nächsten Zeile:
+    # authKeyFile = "/root/tailscale_key";
+  };
+
   # ===== Benutzer: server =====
   users.users.server = {
     isNormalUser = true;
