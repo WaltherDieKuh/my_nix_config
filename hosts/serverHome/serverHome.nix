@@ -4,8 +4,8 @@
 {
   imports = [
     ../../modules/adguard.nix
-    #../../modules/vaultwarden.nix
-    #../../modules/nextcloud.nix
+    ../../modules/vaultwarden.nix
+    ../../modules/nextcloud.nix
     #../../modules/backup.nix
   ];
 
