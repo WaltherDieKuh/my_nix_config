@@ -63,6 +63,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI...dein-public-key... user@homePC"
     ];
   };
+  users.users.nginx.extraGroups = [ "acme" ];
 
   # Erlaube dem User "server" sudo ohne Passwort (Optional, aber oft bei Servern gewünscht)
   security.sudo.wheelNeedsPassword = false;

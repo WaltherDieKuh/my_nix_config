@@ -4,7 +4,6 @@
   # ===== PostgreSQL Datenbank-Backend =====
   services.postgresql = {
     enable = true;
-    # Datenbank und User automatisch anlegen
     ensureDatabases = [ "nextcloud" ];
     ensureUsers = [
       {
@@ -31,10 +30,10 @@
   # ===== Nextcloud Service =====
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud; # Nutzt default stable Version (sicherer bei #Upgrades)
+    package = pkgs.nextcloud33;
     
     # Hostname (wichtig für Reverse Proxy & Let's Encrypt)
-    hostName = "nextcloud.deine-domain.duckdns.org"; # BITTE ANPASSEN
+    hostName = "nextcloud.mk-2-home-server.duckdns.org"; # BITTE ANPASSEN
 
     # Datenverzeichnis (Standard)
     datadir = "/var/lib/nextcloud";
@@ -77,21 +76,17 @@
     enable = true;
     virtualHosts.${config.services.nextcloud.hostName} = {
       forceSSL = true;
-      # Hier nutzen wir das Zertifikat aus security.acme, das wir ggf. mit #DuckDNS holen
-      useACMEHost = "nextcloud.deine-domain.duckdns.org"; # BITTE ANPASSEN
+      useACMEHost = "nextcloud.mk-2-home-server.duckdns.org";
     };
   };
 
-  # Die ACME / Let's Encrypt Config per DuckDNS (wie schon bei #Vaultwarden):
   security.acme = {
     acceptTerms = true;
-    # E-Mail-Adresse für Let's Encrypt Benachrichtigungen (auch hier #anpassen!)
-    defaults.email = "deine@email.de"; # BITTE ANPASSEN
+    defaults.email = "wilhelm.woelkner@gmail.com"; 
 
-    certs."nextcloud.deine-domain.duckdns.org" = {
-      domain = "nextcloud.deine-domain.duckdns.org"; # BITTE ANPASSEN
+    certs."nextcloud.mk-2-home-server.duckdns.org" = {
+      domain = "nextcloud.mk-2-home-server.duckdns.org"; 
       dnsProvider = "duckdns";
-      # Die Datei mit dem Token (DUCKDNS_TOKEN=xxx) muss existieren.
       credentialsFile = "/var/lib/secrets/duckdns.env";
     };
   };
