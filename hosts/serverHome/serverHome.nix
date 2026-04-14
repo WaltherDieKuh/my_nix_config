@@ -32,12 +32,26 @@
   console.keyMap = "de";
 
   # ===== Hardware / Energieverwaltung (Alter Laptop) =====
+  # Das Display der Konsole nach 60 Sekunden Inaktivität abschalten (Strom sparen & Burn-In verhindern)
+  boot.kernelParams = [ "consoleblank=60" ];
+
   # Verhindert, dass der Laptop beim Zuklappen in den Sleep geht
   services.logind = {
     lidSwitch = "ignore";
     lidSwitchExternalPower = "ignore";
     lidSwitchDocked = "ignore";
   };
+
+  # Deaktiviert Suspend, Hibernate und Sleep radikal auf Systemebene.
+  # (Verhindert zuverlässig, dass irgendein Dämon oder WLAN-Event den Laptop schlafen legt)
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+
+  # Falls der Server über WLAN verbunden ist: WLAN-Energiesparmodus deaktivieren, 
+  # da dieser manchmal für SSH-Verbindungsabbrüche sorgt, wenn der Deckel zu ist
+  networking.networkmanager.wifi.powersave = false;
 
   # ===== SSH Zugang =====
   services.openssh = {
