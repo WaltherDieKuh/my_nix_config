@@ -4,9 +4,9 @@
 {
   imports = [
     ../../modules/adguard.nix
-    ../../modules/vaultwarden.nix
-    ../../modules/nextcloud.nix
-    ../../modules/backup.nix
+    #../../modules/vaultwarden.nix
+    #../../modules/nextcloud.nix
+    #../../modules/backup.nix
   ];
 
   # ===== System / Netzwerk =====
@@ -55,6 +55,8 @@
     description = "Server Administrator";
     # wheel = sudo-Rechte, networkmanager = Netzwerkeinstellungen
     extraGroups = [ "networkmanager" "wheel" ];
+
+    hashedPassword = "$6$mJmxeYaNOOVRKcFO$2ou.1jwM.kcBoxMiv324OEujNhaw7kxirkkbyjcrjNfM6a3vsbNjJgbw.twAddlVZBD1qgOGdZE4O.PnW1HFp/";
     
     # Füge hier deinen öffentlichen SSH-Key ein (z.B. ~/.ssh/id_rsa.pub vom homePC/laptopUni)
     openssh.authorizedKeys.keys = [
@@ -78,6 +80,19 @@
 
   # Nötig für Flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  
+  boot.loader = {
+    # Aktiviert systemd-boot
+    systemd-boot.enable = true;
+
+    # Erlaubt es dem Bootloader, das EFI-Variablen-Verzeichnis zu ändern
+    # (notwendig für die Installation/Updates)
+    efi.canTouchEfiVariables = true;
+
+    # Optional: Begrenzung der Anzahl der Generationen im Boot-Menü
+    # Verhindert, dass die EFI-Partition mit alten Einträgen vollgepackt wird
+    systemd-boot.configurationLimit = 10;
+  };
 
   # Version (Entspricht dem Release, mit dem du startest)
   system.stateVersion = "23.11"; # Passe das ggf. auf deine aktuelle Version an (z.B. 24.05)
