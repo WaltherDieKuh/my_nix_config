@@ -60,7 +60,9 @@
     
     # Füge hier deinen öffentlichen SSH-Key ein (z.B. ~/.ssh/id_rsa.pub vom homePC/laptopUni)
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOXgfvt8Z4c6Qvle+vJMn3XhbMi36mHflyBPAOlyWZC+ willi@laptopUni"    ];
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOXgfvt8Z4c6Qvle+vJMn3XhbMi36mHflyBPAOlyWZC+ willi@laptopUni"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAD61iQwFwpiyzfB0NaDH7dLyQfdl8hjiefy5udw20xW willi@WillisPC"    
+      ];
   };
   users.users.nginx.extraGroups = [ "acme" ];
 
