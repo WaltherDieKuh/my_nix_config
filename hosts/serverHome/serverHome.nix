@@ -42,6 +42,8 @@
     lidSwitchDocked = "ignore";
   };
 
+  services.upower.enable = true;
+
   # Deaktiviert Suspend, Hibernate und Sleep radikal auf Systemebene.
   # (Verhindert zuverlässig, dass irgendein Dämon oder WLAN-Event den Laptop schlafen legt)
   systemd.targets.sleep.enable = false;
