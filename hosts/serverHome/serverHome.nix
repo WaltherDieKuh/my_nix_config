@@ -100,6 +100,7 @@
     wget
     vim
     nano
+    powertop
     tmux       # Nützlich, um Prozesse auch nach SSH-Disconnect am Leben zu halten
   ];
 
