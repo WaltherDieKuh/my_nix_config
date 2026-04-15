@@ -101,6 +101,7 @@
     vim
     nano
     powertop
+    upower
     tmux       # Nützlich, um Prozesse auch nach SSH-Disconnect am Leben zu halten
   ];
 
