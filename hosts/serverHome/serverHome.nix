@@ -11,6 +11,17 @@
 
   # ===== System / Netzwerk =====
   networking.hostName = "serverHome";
+
+  networking.useDHCP = false;
+
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
+
+  networking.defaultGateway = "192.168.0.1";
+
+  networking.interfaces."<interface>".ipv4.addresses = [ {
+    address = "192.168.0.250"; # Deine Wunscharadresse
+    prefixLength = 24;
+  } ];
   
   # Variante 1: DHCP mit statischer IP-Reservierung im Router (Empfohlen für Heimnetze wie FritzBox).
   # Belasse networkmanager an, wenn er für WLAN oder einfaches DHCP genutzt wird:
