@@ -31,6 +31,13 @@
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud33;
+
+    maxUploadSize = "10G";
+    
+    # PHP etwas mehr RAM geben für flüssigeres Laden von Fotogalerien
+    phpOptions = {
+      "memory_limit" = "1024M";
+    };
     
     # Hostname (wichtig für Reverse Proxy & Let's Encrypt)
     hostName = "nextcloud.mk-2-home-server.duckdns.org"; # BITTE ANPASSEN
@@ -85,6 +92,7 @@
     defaults.email = "wilhelm.woelkner@gmail.com"; 
 
     certs."nextcloud.mk-2-home-server.duckdns.org" = {
+      group = config.services.nginx.group;
       domain = "nextcloud.mk-2-home-server.duckdns.org"; 
       dnsProvider = "duckdns";
       credentialsFile = "/var/lib/secrets/duckdns.env";
