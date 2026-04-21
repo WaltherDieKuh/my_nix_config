@@ -74,6 +74,18 @@
                 name = "FH GitLab";
                 url = "https://git.ai.fh-erfurt.de";
               }
+              {
+                name = "Vaultwarden";
+                url = "https://vault.mk-2-home-server.duckdns.org";
+              }
+              {
+                name = "Nextcloud";
+                url = "https://nextcloud.mk-2-home-server.duckdns.org";
+              }
+              {
+                name = "AdGuard Home";
+                url = "http://mk-2-home-server.duckdns.org:3000";
+              }
             ];
           }
         ];
@@ -121,6 +133,9 @@
         "browser.search.suggest.enabled" = false;
         "browser.urlbar.suggest.searches" = false;
         "browser.urlbar.showSearchSuggestionsFirst" = false;
+
+        # --- Disable built-in password manager ---
+        "signon.rememberSignons" = false;
       };
     };
     policies = {
@@ -137,8 +152,8 @@
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
           installation_mode = "force_installed";
         };
-        "browserpass@maximbaz.com" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/browserpass-ce/latest.xpi";
+        "{446900e4-71c2-419f-ad28-16f441b8d1b6}" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
           installation_mode = "force_installed";
         };
       };
