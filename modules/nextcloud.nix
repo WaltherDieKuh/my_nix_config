@@ -35,9 +35,6 @@
     maxUploadSize = "10G";
     
     # PHP etwas mehr RAM geben für flüssigeres Laden von Fotogalerien
-    phpOptions = {
-      "memory_limit" = "1024M";
-    };
     
     # Hostname (wichtig für Reverse Proxy)
     hostName = "mk-2-home-server.duckdns.org"; 
