@@ -61,6 +61,6 @@
   };
 
   # ===== Firewall =====
-  # Port 80/443 für den Webserver freigeben
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  # Port 80/443 für den Webserver freigeben, aber NUR im Tailscale-Netzwerk
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 80 443 ];
 }

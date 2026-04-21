@@ -255,7 +255,4 @@ in {
     wantedBy = ["timers.target"];
   };
 
-  services.tailscale = {
-    enable = true;
-  };
 }
