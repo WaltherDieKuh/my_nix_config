@@ -192,6 +192,10 @@
           name = wacom-intuos-bt-s-pen
           output = DP-2
         }
+
+        input {
+          accel_profile = flat
+        }
       ''}
 
       ${lib.optionalString isLaptop ''
