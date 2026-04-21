@@ -65,6 +65,11 @@
     # Der VPS über Tailscale dient als vertrauenswürdiger Proxy
     settings = {
       trusted_proxies = [ "100.64.0.0/10" ];
+      trusted_domains = [
+        "mk-2-home-server.duckdns.org"
+        "nextcloud.mk-2-home-server.duckdns.org"
+      ];
+      overwriteprotocol = "https"; # Damit Nextcloud URLs standardmäßig mit https generiert
     };
 
     # Nützliche Apps installieren (optional)
