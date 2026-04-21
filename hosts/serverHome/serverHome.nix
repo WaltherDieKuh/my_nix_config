@@ -18,7 +18,7 @@
 
   networking.defaultGateway = "192.168.0.1";
 
-  networking.interfaces."<interface>".ipv4.addresses = [ {
+  networking.interfaces."enp2s0".ipv4.addresses = [ {
     address = "192.168.0.250"; # Deine Wunscharadresse
     prefixLength = 24;
   } ];

@@ -34,11 +34,6 @@
 
     maxUploadSize = "10G";
     
-    # PHP etwas mehr RAM geben für flüssigeres Laden von Fotogalerien
-    phpOptions = {
-      "memory_limit" = "1024M";
-    };
-    
     # Hostname (wichtig für Reverse Proxy & Let's Encrypt)
     hostName = "nextcloud.mk-2-home-server.duckdns.org"; # BITTE ANPASSEN
 
