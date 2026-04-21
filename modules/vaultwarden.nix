@@ -20,40 +20,17 @@
     };
   };
 
-  # ===== Let's Encrypt (ACME) via DNS Challenge =====
-  # Da der Server nicht aus dem Internet per Port 80 erreichbar ist, 
-  # müssen wir die DNS-01 Challenge nutzen, um ein valides HTTPS-Zertifikat #zu bekommen.
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "wilhelm.woelkner@gmail.com";
-
-    certs."vault.mk-2-home-server.duckdns.org" = {
-      domain = "vault.mk-2-home-server.duckdns.org";
-      dnsProvider = "duckdns";
-      # Diese Datei musst du NACH dem Deployment manuell erstellen.
-      # Sie muss enthalten: DUCKDNS_TOKEN=dein-duckdns-token
-      # sudo mkdir -p /var/lib/secrets
-      # sudo nano /var/lib/secrets/duckdns.env
-      # sudo chmod 400 /var/lib/secrets/duckdns.env
-      credentialsFile = "/var/lib/secrets/duckdns.env";
-    };
-  };
-
   # ===== Reverse Proxy (Nginx) =====
-  # Ich habe hier Nginx gewählt, da es in NixOS extrem reibungslos mit
-  # dem internen `security.acme` DNS-Challenge Tool (Lego) #zusammenarbeitet.
-  # Caddy benötigt für DNS-Challenges oft Custom-Builds mit speziellen #Plugins.
+  # Da der VPS die SSL-Verschlüsselung übernimmt, delegiert Nginx die Anfragen
+  # nun unverschlüsselt (HTTP) über Tailscale an Vaultwarden weiter.
   services.nginx = {
     enable = true;
     recommendedProxySettings = true;
-    recommendedTlsSettings = true;
+    recommendedTlsSettings = false;
     recommendedGzipSettings = true;
 
     virtualHosts."vault.mk-2-home-server.duckdns.org" = {
-      # Zertifikat aus dem ACME Modul von oben verwenden
-      useACMEHost = "vault.mk-2-home-server.duckdns.org";
-      forceSSL = true;
-
+      # Kein SSL mehr lokal, der VPS-Tunnel übernimmt Let's Encrypt
       locations."/" = {
         proxyPass = "http://127.0.0.1:8222";
       };
