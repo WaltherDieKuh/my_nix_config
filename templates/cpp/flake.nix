@@ -17,7 +17,12 @@
           version = "0.1.0";
           src = ./.;
 
-          nativeBuildInputs = [ pkgs.gnumake ];
+          nativeBuildInputs = with pkgs; [ gnumake pkg-config ];
+          buildInputs = with pkgs; [ 
+            # Füge hier deine C++ Libraries hinzu, z.B.:
+            # boost
+            # fmt
+          ];
           
           buildPhase = ''
             make
@@ -30,11 +35,16 @@
         };
 
         devShells.default = pkgs.mkShell {
+          nativeBuildInputs = with pkgs; [
+            pkg-config
+          ];
           buildInputs = with pkgs; [
             gnumake
             gcc
             gdb
-          ];
+            # Tools für Editor-Support (optional, aber hilfreich):
+            # clang-tools  # für clangd
+          ] ++ packages.default.buildInputs;
         };
       }
     );

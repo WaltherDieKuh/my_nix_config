@@ -18,26 +18,6 @@
       };
     };
 
-    wilhelmwoelkneroutlook = {
-      address = "wilhelm.woelkner@outlook.de";
-      flavor = "outlook.office365.com";
-      realName = "Wilhelm Wölkner";
-      thunderbird = {
-        enable = true;
-        profiles = ["Privat"];
-      };
-    };
-
-    heloxu = {
-      address = "heloxu@outlook.de";
-      flavor = "outlook.office365.com";
-      realName = "heloxu wölkchen";
-      thunderbird = {
-        enable = true;
-        profiles = ["Privat"];
-      };
-    };
-
     sophiewilhelm = {
       address = "sophiewilhelm06@gmail.com";
       flavor = "gmail.com";
