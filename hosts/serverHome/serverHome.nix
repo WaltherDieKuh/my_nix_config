@@ -142,4 +142,28 @@
   # um dort alle userspezifischen Aliases und Profile zentral zu verwalten,
   # genau wie bei deinem willi.nix Profil.
   home-manager.users.server = import ../../home/server.nix;
+
+  # ===== Nginx VirtualHost für Website lol =====
+  # Da Nginx bereits auf dem Homeserver durch andere Module aktiviert ist,
+  # fügen wir hier nur den VirtualHost und die tmpfiles-Regel hinzu.
+  systemd.tmpfiles.rules = [
+    "d /var/www/portfolio 0755 nginx nginx -"
+  ];
+
+  services.nginx.virtualHosts."portfolio.meine-domain.de" = {
+    # Root-Verzeichnis für Nginx
+    root = "/var/www/portfolio";
+    
+    # SSL wird nicht lokal benötigt, da der VPS (Caddy) dies übernimmt
+    listen = [
+      {
+        addr = "0.0.0.0";
+        port = 80;
+      }
+      {
+        addr = "[::]";
+        port = 80;
+      }
+    ];
+  };
 }

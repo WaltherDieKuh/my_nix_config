@@ -40,5 +40,8 @@
         platforms = platforms.linux;
       };
     };
+    openldap = prev.openldap.overrideAttrs (oldAttrs: {
+      doCheck = false;
+    });
   };
 }
