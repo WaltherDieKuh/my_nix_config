@@ -171,6 +171,8 @@
     url = "https://github.com/WaltherDieKuh/sophie-web";
     tokenFile = "/root/secrets/runner-token"; # Muss manuell mit dem GitHub-Token erstellt werden
     extraLabels = [ "nixos-portfolio" ];
+
+    extraPackages = [ pkgs.git-lfs ];
   };
 
   # Zielordner erstellen und Berechtigungen setzen
