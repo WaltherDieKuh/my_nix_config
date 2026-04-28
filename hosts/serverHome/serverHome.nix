@@ -176,6 +176,10 @@
 
     extraPackages = [ pkgs.git pkgs.rsync pkgs.git-lfs ];
   };
+  
+  systemd.services."github-runner-portfolio-runner".serviceConfig = {
+    ReadWritePaths = [ "/var/www/portfolio" ];
+  };
 
   # Zielordner erstellen und Berechtigungen setzen
   # Der erstellte User für den Runner heißt standardmäßig "github-runner-<runner-name>"
