@@ -167,7 +167,7 @@
   services.github-runners."portfolio-runner" = {
     enable = true;
     name = "portfolio-runner";
-    url = "https://github.com/WaltherDieKuh/sophie-web.git";
+    url = "https://github.com/WaltherDieKuh/sophie-web";
     tokenFile = "/root/secrets/runner-token"; # Muss manuell mit dem GitHub-Token erstellt werden
     extraLabels = [ "nixos-portfolio" ];
   };
