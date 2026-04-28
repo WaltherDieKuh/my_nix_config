@@ -108,6 +108,7 @@
   # ===== Grundlegende System-Pakete =====
   environment.systemPackages = with pkgs; [
     git
+    git-lfs
     htop
     curl
     wget
@@ -177,5 +178,5 @@
   systemd.tmpfiles.rules = [
     # Typ Pfad Modus User Group Age Argument
     "d /var/www/portfolio 0750 github-runner-portfolio-runner nginx - -"
-  ];
+  ];c
 }
