@@ -145,12 +145,8 @@
 
   # ===== Nginx VirtualHost für Website lol =====
   # Da Nginx bereits auf dem Homeserver durch andere Module aktiviert ist,
-  # fügen wir hier nur den VirtualHost und die tmpfiles-Regel hinzu.
-  systemd.tmpfiles.rules = [
-    "d /var/www/portfolio 0755 nginx nginx -"
-  ];
-
-  services.nginx.virtualHosts."portfolio.meine-domain.de" = {
+  # fügen wir hier den VirtualHost hinzu.
+  services.nginx.virtualHosts."portfolio.mk-2-home-server.duckdns.org" = {
     # Root-Verzeichnis für Nginx
     root = "/var/www/portfolio";
     
@@ -166,4 +162,20 @@
       }
     ];
   };
+
+  # GitHub Runner Dienst konfigurieren
+  services.github-runners."portfolio-runner" = {
+    enable = true;
+    name = "portfolio-runner";
+    url = "https://github.com/WaltherDieKuh/sophie-web";
+    tokenFile = "/root/secrets/runner-token"; # Muss manuell mit dem GitHub-Token erstellt werden
+    extraLabels = [ "nixos-portfolio" ];
+  };
+
+  # Zielordner erstellen und Berechtigungen setzen
+  # Der erstellte User für den Runner heißt standardmäßig "github-runner-<runner-name>"
+  systemd.tmpfiles.rules = [
+    # Typ Pfad Modus User Group Age Argument
+    "d /var/www/portfolio 0750 github-runner-portfolio-runner nginx - -"
+  ];
 }
