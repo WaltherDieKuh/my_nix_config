@@ -119,6 +119,7 @@
     powertop
     upower
     tmux       # Nützlich, um Prozesse auch nach SSH-Disconnect am Leben zu halten
+    apacheHttpd # Stellt das htpasswd-Tool zur Verfügung
   ];
 
   # Nötig für Flakes
@@ -152,6 +153,8 @@
   services.nginx.virtualHosts."portfolio.mk-2-home-server.duckdns.org" = {
     # Root-Verzeichnis für Nginx
     root = "/var/www/portfolio";
+
+    basicAuthFile = "/etc/nginx/.htpasswd";
     
     # SSL wird nicht lokal benötigt, da der VPS (Caddy) dies übernimmt
     listen = [
@@ -176,7 +179,7 @@
 
     extraPackages = [ pkgs.git pkgs.rsync pkgs.git-lfs ];
   };
-  
+
   systemd.services."github-runner-portfolio-runner".serviceConfig = {
     ReadWritePaths = [ "/var/www/portfolio" ];
   };
