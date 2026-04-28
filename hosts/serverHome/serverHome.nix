@@ -85,6 +85,8 @@
     # authKeyFile = "/root/tailscale_key";
   };
 
+  programs.nix-ld.enable = true;
+
   # ===== Benutzer: server =====
   users.users.server = {
     isNormalUser = true;
