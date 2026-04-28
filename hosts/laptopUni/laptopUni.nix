@@ -11,4 +11,6 @@
   ];
 
   networking.hostName = "laptopUni";
+
+  services.tailscale.enable = true;
 }

@@ -85,6 +85,7 @@
     ../modules/firefox.nix
     ../modules/nautilus.nix
     ../modules/starship.nix
+    ../modules/nextcloud-client.nix
     ./aliasse.nix
   ];
 }

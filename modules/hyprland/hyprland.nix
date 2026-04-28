@@ -176,6 +176,7 @@
       exec-once = [
         "waybar"
         "$HOME/.config/hypr/scripts/set_random_wallpaper.sh"
+        "nextcloud --background"
       ];
     };
 
