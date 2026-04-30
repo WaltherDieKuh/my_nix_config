@@ -150,11 +150,17 @@
   # ===== Nginx VirtualHost für Website lol =====
   # Da Nginx bereits auf dem Homeserver durch andere Module aktiviert ist,
   # fügen wir hier den VirtualHost hinzu.
+
+  users.users.nginx.extraGroups = [ "nextcloud" ];
   services.nginx.virtualHosts."sophies-dreamworld.de" = {
     # Root-Verzeichnis für Nginx
     root = "/var/www/portfolio";
 
     basicAuthFile = "/etc/nginx/.htpasswd";
+
+    locations."/media" = {
+      alias = "/var/lib/nextcloud/data/Sophie/files/portfolio-media/";
+    }
     
     # SSL wird nicht lokal benötigt, da der VPS (Caddy) dies übernimmt
     listen = [
