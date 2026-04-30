@@ -153,6 +153,10 @@
   services.nginx.virtualHosts."sophies-dreamworld.de" = {
     # Root-Verzeichnis für Nginx
     root = "/var/www/portfolio";
+    forceSSL = true;
+    enableACME = true;
+    useACMEHost = "sophies-dreamworld.de";
+
 
     basicAuthFile = "/etc/nginx/.htpasswd";
     
