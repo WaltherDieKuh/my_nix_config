@@ -157,7 +157,7 @@
 
     basicAuthFile = "/etc/nginx/.htpasswd";
 
-    locations."/media" = {
+    locations."/media/" = {
       alias = "/var/lib/nextcloud/data/Sophie/files/portfolio-media/";
     };
     
