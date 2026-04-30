@@ -150,7 +150,7 @@
   # ===== Nginx VirtualHost für Website lol =====
   # Da Nginx bereits auf dem Homeserver durch andere Module aktiviert ist,
   # fügen wir hier den VirtualHost hinzu.
-  services.nginx.virtualHosts."portfolio.mk-2-home-server.duckdns.org" = {
+  services.nginx.virtualHosts."sophies-dreamworld.de" = {
     # Root-Verzeichnis für Nginx
     root = "/var/www/portfolio";
 
