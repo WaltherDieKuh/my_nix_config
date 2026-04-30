@@ -102,7 +102,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAD61iQwFwpiyzfB0NaDH7dLyQfdl8hjiefy5udw20xW willi@WillisPC"    
       ];
   };
-  users.users.nginx.extraGroups = [ "acme" ];
+  users.users.nginx.extraGroups = [ "acme" "nextcloud" ];
 
   # Erlaube dem User "server" sudo ohne Passwort (Optional, aber oft bei Servern gewünscht)
   security.sudo.wheelNeedsPassword = false;
@@ -151,7 +151,6 @@
   # Da Nginx bereits auf dem Homeserver durch andere Module aktiviert ist,
   # fügen wir hier den VirtualHost hinzu.
 
-  users.users.nginx.extraGroups = [ "nextcloud" ];
   services.nginx.virtualHosts."sophies-dreamworld.de" = {
     # Root-Verzeichnis für Nginx
     root = "/var/www/portfolio";
@@ -160,7 +159,7 @@
 
     locations."/media" = {
       alias = "/var/lib/nextcloud/data/Sophie/files/portfolio-media/";
-    }
+    };
     
     # SSL wird nicht lokal benötigt, da der VPS (Caddy) dies übernimmt
     listen = [
