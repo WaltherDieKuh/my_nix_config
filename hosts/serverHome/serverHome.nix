@@ -147,19 +147,12 @@
   # genau wie bei deinem willi.nix Profil.
   home-manager.users.server = import ../../home/server.nix;
 
-  # ACME Konfiguration
-  security.acme.acceptTerms = true;
-  security.acme.defaults.email = "wilhelm.woelkner@gmail.com";
-  
   # ===== Nginx VirtualHost für Website lol =====
   # Da Nginx bereits auf dem Homeserver durch andere Module aktiviert ist,
   # fügen wir hier den VirtualHost hinzu.
   services.nginx.virtualHosts."sophies-dreamworld.de" = {
     # Root-Verzeichnis für Nginx
     root = "/var/www/portfolio";
-    forceSSL = true;
-    enableACME = true;
-
 
     basicAuthFile = "/etc/nginx/.htpasswd";
     
