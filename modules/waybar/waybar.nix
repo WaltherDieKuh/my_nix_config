@@ -16,7 +16,7 @@ let
       on-click = "rofi -show drun";
       tooltip = false;
     };
-    "hyprland/workspaces" = {
+    "niri/workspaces" = {
       format = "{icon}";
       on-click = "activate";
       format-icons = {
@@ -28,7 +28,7 @@ let
         "*" = 4;
       };
     };
-    "hyprland/window" = {
+    "niri/window" = {
       max-length = 35;
       separate-outputs = true;
     };
@@ -145,8 +145,7 @@ in {
         output = "DP-3";
         modules-left = [
           "custom/launcher"
-          "hyprland/workspaces"
-          
+          "niri/workspaces"
         ];
         modules-center = [ "pulseaudio" ];
         modules-right = [
@@ -160,8 +159,8 @@ in {
         output = "DP-2";
         modules-left = [
           "custom/launcher"
-          "hyprland/workspaces"
-          "hyprland/window"
+          "niri/workspaces"
+          "niri/window"
         ];
         modules-center = [ "clock" ];
         modules-right = [ "network" "bluetooth" ];
@@ -171,7 +170,7 @@ in {
         output = "HDMI-A-1";
         modules-left = [
           "custom/launcher"
-          "hyprland/workspaces"
+          "niri/workspaces"
         ];
         modules-center = [ "mpris" ];
         modules-right = [ "pulseaudio" "custom/notification" ];
@@ -181,8 +180,8 @@ in {
         output = "eDP-1";
         modules-left = [
           "custom/launcher"
-          "hyprland/workspaces"
-          "hyprland/window"
+          "niri/workspaces"
+          "niri/window"
         ];
         modules-center = [ "clock" "mpris" ];
         modules-right = [

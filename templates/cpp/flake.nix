@@ -11,7 +11,7 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
       in
-      {
+      rec {
         packages.default = pkgs.stdenv.mkDerivation {
           pname = "algoritmen-projekt";
           version = "0.1.0";
@@ -19,9 +19,12 @@
 
           nativeBuildInputs = with pkgs; [ gnumake pkg-config ];
           buildInputs = with pkgs; [ 
-            # Füge hier deine C++ Libraries hinzu, z.B.:
-            # boost
-            # fmt
+            pkg-config
+            alsa-lib
+            freetype
+            libX11
+            libXext
+            libXcursor
           ];
           
           buildPhase = ''
@@ -35,16 +38,13 @@
         };
 
         devShells.default = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [
-            pkg-config
-          ];
-          buildInputs = with pkgs; [
-            gnumake
-            gcc
+          inputsFrom = [ packages.default ];
+          packages = with pkgs; [
+            # Tools für Entwicklung und Editor-Support
             gdb
-            # Tools für Editor-Support (optional, aber hilfreich):
-            # clang-tools  # für clangd
-          ] ++ packages.default.buildInputs;
+            clang-tools # für clangd, clang-format, etc.
+            cmake
+          ];
         };
       }
     );

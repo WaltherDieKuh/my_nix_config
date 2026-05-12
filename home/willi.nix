@@ -14,10 +14,10 @@
     networkmanagerapplet
     pasystray
     brightnessctl
-    hyprpaper
+    # hyprpaper removed (Hyprland-specific)
     wl-clipboard
+    swww
     jetbrains-toolbox
-    crosspipe
     docker
     tor-browser
     lmms

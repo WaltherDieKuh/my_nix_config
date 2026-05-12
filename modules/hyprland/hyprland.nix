@@ -9,7 +9,7 @@
   services.swayosd.enable = true;
 
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = false; # Disabled — switching to Niri
 
     settings = {
       # Allgemeine Base-Konfiguration, die FÜR BEIDE gilt:
@@ -150,6 +150,8 @@
 
         ", XF86AudioMute, exec, swayosd-client --output-volume mute-toggle"
         ", XF86AudioMicMute, exec, swayosd-client --input-volume mute-toggle"
+        ", Print, exec, grim -g \"$(slurp)\" - | wl-copy" 
+
       ];
 
       # Mouse bindings
@@ -175,7 +177,7 @@
       # Auto-start applications
       exec-once = [
         "waybar"
-        "$HOME/.config/hypr/scripts/set_random_wallpaper.sh"
+        "$HOME/.config/niri/scripts/set_random_wallpaper.sh"
         "nextcloud --background"
       ];
     };
@@ -204,6 +206,14 @@
         monitor=eDP-1, preferred, auto, 1
         # (Optional: Skalierung für Laptop)
         # monitor=eDP-1, preferred, auto, 1.25
+        device {
+          name = wacom-intuos-bt-s-pen
+          output = eDP-1
+        }
+
+        input {
+          accel_profile = flat
+        }
       ''}
     '';
   };

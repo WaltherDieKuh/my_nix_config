@@ -177,6 +177,10 @@ in {
     gtksourceview3
     libsoup_3
     bottles
+    grim
+    slurp
+    swappy
+    wl-clipboard
   ];
   networking.hosts = {
     "127.0.0.1" = ["localhost"];

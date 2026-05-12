@@ -3,8 +3,8 @@
   imports = [
     ./kitty.nix
     ./waybar/waybar.nix
-    ./hyprland/hyprland.nix
-    ./hyprpaper/hyprpaper.nix
+    ./niri.nix
+    ./wallpaper/wallpaper.nix
     ./email.nix
     ./git.nix
     ./spotifyd.nix
