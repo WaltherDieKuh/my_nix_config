@@ -19,7 +19,6 @@ in {
   services = {
     blueman.enable = true;
     gvfs.enable = true;
-    flatpak.enable = true;
     pipewire = {
       enable = true;
       jack.enable = true;
@@ -121,7 +120,6 @@ in {
     enable = true;
     interactiveShellInit = " set -g fish_greeting ";
   };
-  programs.hyprland.enable = true;
 
   system.stateVersion = "25.05";
 
@@ -145,6 +143,7 @@ in {
   ];
 
   environment.systemPackages = with pkgs; [
+    niri
     neovim
     rclone
     fuse

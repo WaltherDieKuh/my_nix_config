@@ -14,7 +14,7 @@
     networkmanagerapplet
     pasystray
     brightnessctl
-    # hyprpaper removed (Hyprland-specific)
+    # hyprpaper removed (old Hyprland-specific setup)
     wl-clipboard
     swww
     waybar
@@ -28,7 +28,6 @@
     gnupg
   ];
 
-  home.pointerCursor.hyprcursor.enable = true;
   gtk.gtk4.theme = null;
 
   programs = {
@@ -81,10 +80,7 @@
   home.stateVersion = "25.05";
 
   # Niri user config moved to a separate file to keep this file tidy
-  imports = [
-    ./niri-home.nix
-  ];
-
+  
   imports = [
     ../modules/stylix.nix
     ../modules/stylix-home.nix
@@ -95,5 +91,7 @@
     ../modules/starship.nix
     ../modules/nextcloud-client.nix
     ./aliasse.nix
+    ./niri-home.nix
+
   ];
 }

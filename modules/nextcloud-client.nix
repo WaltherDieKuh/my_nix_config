@@ -4,7 +4,7 @@
   # Installiere das nextcloud-client Paket
   home.packages = [ pkgs.nextcloud-client ];
 
-  # Wir überlassen das Autostarten Hyprland (exec-once) anstatt systemd,
+  # Wir überlassen den Autostart der Niri-Session (spawn-at-startup) anstatt systemd,
   # da systemd user services unter Wayland manchmal am fehlenden Tray-Target
   # oder graphical-session.target hängen bleiben.
   services.nextcloud-client = {
