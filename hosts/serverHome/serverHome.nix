@@ -216,8 +216,7 @@
       rsync -a --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.JPG" --include="*.PNG" --exclude="*" "$NC_DIR/" "$WEB_DIR/"
 
       # Schritt 2: Bilder im Web-Ordner in WebP umwandeln
-      find "$WEB_DIR" -type f \( -iname \*.jpg -o -iname \*.jpeg -o -iname \*.png \) | while read file; do
-        webp_file="''${file%.*}.webp"
+      rsync -a --include="*/" --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.JPG" --include="*.PNG" --exclude="*" "$NC_DIR/" "$WEB_DIR/" webp_file="''${file%.*}.webp"
         
         # Nur konvertieren, wenn wir das nicht schon beim letzten Mal gemacht haben (spart CPU!)
         if [ ! -f "$webp_file" ]; then
