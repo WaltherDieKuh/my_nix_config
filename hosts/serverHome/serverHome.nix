@@ -241,7 +241,7 @@
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnBootSec = "1m";
-      OnUnitActiveSec = "1m"; # Intervall: 1 Minute
+      OnUnitActiveSec = "1h"; # Intervall: 1 Stunde
       Unit = "portfolio-image-sync.service";
     };
   };
