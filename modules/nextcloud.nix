@@ -30,7 +30,7 @@
   # ===== Nextcloud Service =====
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud33;
+    package = pkgs.nextcloud32;
 
     maxUploadSize = "10G";
     
