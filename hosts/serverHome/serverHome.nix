@@ -201,38 +201,35 @@
     description = "Sync and convert Portfolio Images from Nextcloud";
     # Diese Pakete braucht das Skript zum Arbeiten
     path = [ pkgs.rsync pkgs.libwebp pkgs.coreutils pkgs.findutils ];
-    
     script = ''
-      # Der interne Pfad, wo Nextcloud die Dateien auf der Festplatte speichert
+      # --- HIER DIE PFADE ANPASSEN ---
       NC_DIR="/var/lib/nextcloud/data/Sophie/files/portfolio-media" 
-      # Der Ordner, wo die fertigen Bilder für die Website landen sollen
       WEB_DIR="/var/www/portfolio/media"
       # -------------------------------
 
-      # Erstelle den Ordner, falls er noch nicht existiert
       mkdir -p "$WEB_DIR"
 
       # Schritt 1: Neue Bilder von Nextcloud in den Web-Ordner kopieren
-      rsync -a --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.JPG" --include="*.PNG" --exclude="*" "$NC_DIR/" "$WEB_DIR/"
+      rsync -a --include="*/" --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.JPG" --include="*.PNG" --exclude="*" "$NC_DIR/" "$WEB_DIR/"
 
-      # Schritt 2: Bilder im Web-Ordner in WebP umwandeln
-      rsync -a --include="*/" --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.JPG" --include="*.PNG" --exclude="*" "$NC_DIR/" "$WEB_DIR/" webp_file="''${file%.*}.webp"
+      # Schritt 2: Bilder im Web-Ordner in WebP umwandeln (sichere Syntax)
+      find "$WEB_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | while read -r file; do
+        webp_file="''${file%.*}.webp"
         
-        # Nur konvertieren, wenn wir das nicht schon beim letzten Mal gemacht haben (spart CPU!)
         if [ ! -f "$webp_file" ]; then
           cwebp -quiet -q 80 "$file" -o "$webp_file"
         fi
         
-        # Die dicke JPG/PNG-Kopie aus dem Web-Ordner löschen (das Nextcloud-Original bleibt sicher!)
         rm "$file"
       done
 
-      # Schritt 3: Den Magic-Befehl für die Nginx-Rechte ausführen
+      # Schritt 3: Rechte fixen
       chown -R github-runner-portfolio-runner:nginx /var/www/portfolio
       find /var/www/portfolio -type d -exec chmod 755 {} +
       find /var/www/portfolio -type f -exec chmod 644 {} +
     '';
-    serviceConfig = {
+
+        serviceConfig = {
       Type = "oneshot";
       User = "root"; # Braucht Root-Rechte, um in den Nextcloud-Datenordner zu gucken
     };
