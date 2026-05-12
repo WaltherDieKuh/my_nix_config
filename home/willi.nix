@@ -17,6 +17,8 @@
     # hyprpaper removed (Hyprland-specific)
     wl-clipboard
     swww
+    waybar
+    nextcloud
     jetbrains-toolbox
     docker
     tor-browser
@@ -78,10 +80,53 @@
 
   home.stateVersion = "25.05";
 
+  # Generate a Niri config file (approximate TOML representation)
+  xdg.configFile."niri/config.toml".text = ''
+    # Generated Niri config (approximate)
+    [environment]
+    DISPLAY = ""
+
+    [input.keyboard]
+    layout = "de"
+    variant = "nodeadkeys"
+
+    [layout]
+    gaps = 5
+    border_enable = true
+    border_width = 2
+    active_color = "#cba6f7"
+    inactive_color = "#595959"
+
+    [spawn]
+    waybar = "waybar"
+    wallpaper = "$HOME/.config/niri/scripts/set_random_wallpaper.sh"
+    nextcloud = "nextcloud --background"
+  '';
+
+  # Ensure startup services run in the user session (Waybar, Nextcloud)
+  systemd.user.services."niri-waybar" = {
+    description = "Start Waybar for Niri session";
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.waybar}/bin/waybar";
+    };
+    wantedBy = [ "default.target" ];
+  };
+
+  systemd.user.services."niri-nextcloud" = {
+    description = "Start Nextcloud client";
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.nextcloud}/bin/nextcloud --background";
+    };
+    wantedBy = [ "default.target" ];
+  };
+
   imports = [
     ../modules/stylix.nix
     ../modules/stylix-home.nix
     ../modules/rofi/rofi.nix
+    ../modules/niri.nix
     ../modules/firefox.nix
     ../modules/nautilus.nix
     ../modules/starship.nix
