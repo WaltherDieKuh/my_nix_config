@@ -216,7 +216,7 @@
       rsync -a --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.JPG" --include="*.PNG" --exclude="*" "$NC_DIR/" "$WEB_DIR/"
 
       # Schritt 2: Bilder im Web-Ordner in WebP umwandeln
-      rsync -a --include="*/" --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.JPG" --include="*.PNG" --exclude="*" "$NC_DIR/" "$WEB_DIR/" webp_file="''${file%.*}.webp"
+      rsync -a --include="*/" --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.JPG" --include="*.PNG" --exclude="*" "$NC_DIR/" "$WEB_DIR/"webp_file="''${file%.*}.webp"
         
         # Nur konvertieren, wenn wir das nicht schon beim letzten Mal gemacht haben (spart CPU!)
         if [ ! -f "$webp_file" ]; then
@@ -244,7 +244,7 @@
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnBootSec = "1m";
-      OnUnitActiveSec = "1m"; # Intervall: 1 Minute
+      OnUnitActiveSec = "1h"; # Intervall: 1 Stunde
       Unit = "portfolio-image-sync.service";
     };
   };
