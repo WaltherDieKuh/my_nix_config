@@ -12,6 +12,7 @@
       }
 
       touchpad {
+        tap
       }
 
       mouse {

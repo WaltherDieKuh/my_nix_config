@@ -30,8 +30,9 @@ tooltip {
 
 #custom-launcher {
     color: #89b4fa;
-    padding-left: 2px;
+    padding-left: 14px;
     padding-right: 2px;
+    font-size: 22px;
 }
 
 #workspaces button {

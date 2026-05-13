@@ -13,8 +13,7 @@ let
   commonModules = {
     "custom/launcher" = {
       format = " ";
-      on-click = "rofi -show drun";
-      tooltip = false;
+      on-click = "rofi -show drun";      on-click-middle = "rofi -show drun";      tooltip = false;
     };
     "niri/workspaces" = {
       format = "{icon}";
