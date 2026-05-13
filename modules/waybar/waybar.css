@@ -20,7 +20,7 @@ tooltip {
     border: 2px solid #89b4fa;
 }
 
-#custom-launcher, #workspaces, #window, #mpris, #clock, #pulseaudio, #network, #battery, #tray, #cpu, #custom-notification, #bluetooth, #memory, #custom-gpu {
+#workspaces, #window, #mpris, #clock, #pulseaudio, #network, #battery, #tray, #cpu, #custom-notification, #bluetooth, #memory, #custom-gpu {
     background: rgba(49, 50, 68, 0.5);
     border-radius: 10px;
     margin: 6px 4px;
@@ -30,8 +30,8 @@ tooltip {
 
 #custom-launcher {
     color: #89b4fa;
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 #workspaces button {

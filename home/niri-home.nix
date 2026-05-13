@@ -69,10 +69,14 @@
 
       Mod+V { toggle-window-floating; }
 
-      Mod+Left  { focus-column-left; }
-      Mod+Right { focus-column-right; }
-      Mod+Up    { focus-window-up; }
-      Mod+Down  { focus-window-down; }
+      Mod+H { focus-column-left; }
+      Mod+L { focus-column-right; }
+      Mod+K { focus-window-up; }
+      Mod+J { focus-window-down; }
+      Mod+left { focus-column-left; }
+      Mod+right { focus-column-right; }
+      Mod+up { focus-window-up; }
+      Mod+down { focus-window-down; }
 
       Mod+1 { focus-workspace 1; }
       Mod+2 { focus-workspace 2; }
