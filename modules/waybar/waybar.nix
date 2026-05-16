@@ -188,8 +188,6 @@ in {
           "cpu"
           "memory"
           "tray"
-          "network"
-          "bluetooth"
           "pulseaudio"
           "battery"
           "custom/notification"

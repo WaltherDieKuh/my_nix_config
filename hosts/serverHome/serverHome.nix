@@ -202,25 +202,33 @@
     # Diese Pakete braucht das Skript zum Arbeiten
     path = [ pkgs.rsync pkgs.libwebp pkgs.coreutils pkgs.findutils ];
     script = ''
-      # --- HIER DIE PFADE ANPASSEN ---
+      # --- HIER WIEDER DEINE PFADE ANPASSEN ---
       NC_DIR="/var/lib/nextcloud/data/Sophie/files/portfolio-media" 
       WEB_DIR="/var/www/portfolio/media"
-      # -------------------------------
+      # ----------------------------------------
 
       mkdir -p "$WEB_DIR"
 
-      # Schritt 1: Neue Bilder von Nextcloud in den Web-Ordner kopieren
-      rsync -a --include="*/" --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.JPG" --include="*.PNG" --exclude="*" "$NC_DIR/" "$WEB_DIR/"
+      # FIX 1: Rsync kopiert ab jetzt auch Dateien, die schon .webp sind
+      rsync -a --include="*/" --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.webp" --include="*.JPG" --include="*.PNG" --include="*.WEBP" --exclude="*" "$NC_DIR/" "$WEB_DIR/"
 
-      # Schritt 2: Bilder im Web-Ordner in WebP umwandeln (sichere Syntax)
+      # Schritt 2: Bilder konvertieren (mit Sicherheitsnetz)
       find "$WEB_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | while read -r file; do
         webp_file="''${file%.*}.webp"
         
         if [ ! -f "$webp_file" ]; then
-          cwebp -quiet -q 80 "$file" -o "$webp_file"
+          # FIX 2: Wir prüfen, ob der cwebp-Befehl fehlerfrei durchläuft (ohne -quiet)
+          if cwebp -q 80 "$file" -o "$webp_file"; then
+            echo "Erfolgreich konvertiert: $webp_file"
+            rm "$file" # Nur löschen, wenn es geklappt hat!
+          else
+            echo "FEHLER bei der Konvertierung von: $file"
+          fi
+        else
+          # Die WebP existiert bereits (warum auch immer noch das alte JPG da liegt)
+          rm "$file"
         fi
         
-        rm "$file"
       done
 
       # Schritt 3: Rechte fixen
