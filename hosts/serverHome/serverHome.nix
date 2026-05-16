@@ -203,31 +203,35 @@
     path = [ pkgs.rsync pkgs.libwebp pkgs.coreutils pkgs.findutils ];
     
     script = ''
-      # Der interne Pfad, wo Nextcloud die Dateien auf der Festplatte speichert
-      NC_DIR="/var/lib/nextcloud/data/Sophie/files/portfolio-media" 
-      # Der Ordner, wo die fertigen Bilder für die Website landen sollen
-      WEB_DIR="/var/www/portfolio/media"
-      # -------------------------------
+      # --- HIER WIEDER DEINE PFADE ANPASSEN ---
+      NC_DIR="/var/lib/nextcloud/data/SOPHIE/files/Portfolio_Bilder" 
+      WEB_DIR="/var/www/portfolio/images"
+      # ----------------------------------------
 
-      # Erstelle den Ordner, falls er noch nicht existiert
       mkdir -p "$WEB_DIR"
 
-      # Schritt 1: Neue Bilder von Nextcloud in den Web-Ordner kopieren
-      rsync -a --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.JPG" --include="*.PNG" --exclude="*" "$NC_DIR/" "$WEB_DIR/"
+      # FIX 1: Rsync kopiert ab jetzt auch Dateien, die schon .webp sind
+      rsync -a --include="*/" --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.webp" --include="*.JPG" --include="*.PNG" --include="*.WEBP" --exclude="*" "$NC_DIR/" "$WEB_DIR/"
 
-      # Schritt 2: Bilder im Web-Ordner in WebP umwandeln
-      rsync -a --include="*/" --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.JPG" --include="*.PNG" --exclude="*" "$NC_DIR/" "$WEB_DIR/"webp_file="''${file%.*}.webp"
+      # Schritt 2: Bilder konvertieren (mit Sicherheitsnetz)
+      find "$WEB_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | while read -r file; do
+        webp_file="''${file%.*}.webp"
         
-        # Nur konvertieren, wenn wir das nicht schon beim letzten Mal gemacht haben (spart CPU!)
         if [ ! -f "$webp_file" ]; then
-          cwebp -quiet -q 80 "$file" -o "$webp_file"
+          # FIX 2: Wir prüfen, ob der cwebp-Befehl fehlerfrei durchläuft (ohne -quiet)
+          if cwebp -q 80 "$file" -o "$webp_file"; then
+            echo "Erfolgreich konvertiert: $webp_file"
+            rm "$file" # Nur löschen, wenn es geklappt hat!
+          else
+            echo "FEHLER bei der Konvertierung von: $file"
+          fi
+        else
+          # Die WebP existiert bereits (warum auch immer noch das alte JPG da liegt)
+          rm "$file"
         fi
-        
-        # Die dicke JPG/PNG-Kopie aus dem Web-Ordner löschen (das Nextcloud-Original bleibt sicher!)
-        rm "$file"
       done
 
-      # Schritt 3: Den Magic-Befehl für die Nginx-Rechte ausführen
+      # Schritt 3: Rechte fixen
       chown -R github-runner-portfolio-runner:nginx /var/www/portfolio
       find /var/www/portfolio -type d -exec chmod 755 {} +
       find /var/www/portfolio -type f -exec chmod 644 {} +
