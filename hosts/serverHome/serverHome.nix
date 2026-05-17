@@ -207,7 +207,7 @@
       mkdir -p "$WEB_DIR"
 
       # FIX 1: Rsync kopiert ab jetzt auch Dateien, die schon .webp sind
-      rsync -a --include="*/" --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.webp" --include="*.JPG" --include="*.PNG" --include="*.WEBP" --exclude="*" "$NC_DIR/" "$WEB_DIR/"
+      rsync -a --include="*/" --include="*.jpg" --include="*.jpeg" --include="*.png" --include="*.webp" --include="*.JPG" --include="*.PNG" --include="*.WEBP" --include="*.gif" --include="*.GIF" --include="*.mp4" --include="*.MP4" --exclude="*" "$NC_DIR/" "$WEB_DIR/"
 
       # Schritt 2: Bilder konvertieren (mit Sicherheitsnetz)
       find "$WEB_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | while read -r file; do
