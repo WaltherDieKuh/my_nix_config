@@ -155,7 +155,7 @@
     # Root-Verzeichnis für Nginx
     root = "/var/www/portfolio";
 
-    basicAuthFile = "/etc/nginx/.htpasswd";
+    #basicAuthFile = "/etc/nginx/.htpasswd";
     
     # SSL wird nicht lokal benötigt, da der VPS (Caddy) dies übernimmt
     listen = [
