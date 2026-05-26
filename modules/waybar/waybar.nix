@@ -163,7 +163,11 @@ in {
           "niri/window"
         ];
         modules-center = [ "clock" ];
-        modules-right = [ "network" "bluetooth" ];
+        modules-right = [
+          "tray"
+          "network"
+          "bluetooth"
+        ];
       } // commonModules;
 
       rightBar = barConfig // {
