@@ -18,6 +18,7 @@
     libwacom
     python3
     python314Packages.pip
+    vlc
   ];
 
   services.xserver.wacom.enable = false;

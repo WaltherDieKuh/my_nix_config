@@ -28,7 +28,7 @@
     spawn-at-startup "waybar"
     spawn-at-startup "bash" "-c" "$HOME/.config/niri/scripts/set_random_wallpaper.sh"
     spawn-at-startup "nextcloud" "--background"
-    spawn-at-startup "xwayland-sattelite"
+    spawn-at-startup "xwayland-satellite"
 
     window-rule {
       match app-id="pavucontrol"

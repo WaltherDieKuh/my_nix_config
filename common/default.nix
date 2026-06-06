@@ -180,7 +180,7 @@ in {
     slurp
     swappy
     wl-clipboard
-    xwayland-sattelite
+    xwayland-satellite
   ];
   networking.hosts = {
     "127.0.0.1" = ["localhost"];
