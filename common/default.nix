@@ -32,7 +32,10 @@ in {
       # Wir öffnen Port 5353 (UDP) für mDNS (Spotify Connect Discovery / Zeroconf)
       # und TCP/UDP 5000 explizit für den spotifyd Daemon
       allowedTCPPorts = [5000];
-      allowedUDPPorts = [5353 5000];
+      allowedUDPPorts = [
+        5353
+        5000
+      ];
       allowedTCPPortRanges = [
         {
           from = 1714;
@@ -68,7 +71,7 @@ in {
   };
 
   nixpkgs.config.allowUnfree = true;
-  programs.nix-ld.enable = true;
+  programs."nix-ld".enable = true;
 
   # Overlay-Einbindung
   nixpkgs.overlays = [
@@ -80,7 +83,14 @@ in {
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = {inherit isDesktop isLaptop inputs outputs;};
+    extraSpecialArgs = {
+      inherit
+        isDesktop
+        isLaptop
+        inputs
+        outputs
+        ;
+    };
     backupFileExtension = "backup";
     users.willi = {
       imports = [
@@ -181,6 +191,15 @@ in {
     swappy
     wl-clipboard
     xwayland-satellite
+    (prismlauncher.override {
+      additionalPrograms = [zenity];
+
+      # Hier haben wir 'wayland' hinzugefügt!
+      additionalLibs = [
+        libdecor
+        wayland
+      ];
+    })
   ];
   networking.hosts = {
     "127.0.0.1" = ["localhost"];
@@ -258,5 +277,4 @@ in {
     };
     wantedBy = ["timers.target"];
   };
-
 }

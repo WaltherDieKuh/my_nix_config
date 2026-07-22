@@ -23,6 +23,14 @@
     layout {
       gaps 5
       default-column-width { proportion 0.5; }
+
+      focus-ring {
+        off
+      }
+
+      border {
+        off
+      }
     }
 
     spawn-at-startup "waybar"
@@ -40,14 +48,22 @@
       open-floating true
     }
 
+    window-rule {
+      match app-id="kitty"
+      default-window-height { proportion 0.5; }
+    }
+
     binds {
       Mod+T { spawn "kitty"; }
+      Mod+Shift+T { spawn "bash" "-c" "target_id=$(niri msg -j focused-window | cut -d: -f2 | cut -d, -f1); kitty & sleep 0.22; niri msg action focus-window --id $target_id; niri msg action consume-window-into-column"; }
       Mod+Q { close-window; }
       Mod+M { quit; }
       Mod+E { spawn "nautilus"; }
       Mod+Space { spawn "rofi" "-show" "drun"; }
       Mod+F { spawn "firefox"; }
       Mod+D { spawn "emote"; }
+      Mod+Return { maximize-column; }
+      Mod+Shift+Return { consume-window-into-column; }
 
       Mod+V { toggle-window-floating; }
 

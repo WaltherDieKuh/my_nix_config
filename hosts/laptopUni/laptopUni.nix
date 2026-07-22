@@ -12,6 +12,13 @@
 
   networking.hostName = "laptopUni";
 
+  services.gns3-server = {
+    enable = true;
+    dynamips.enable = true;
+    ubridge.enable = true;
+    vpcs.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [
     rnote
     libinput

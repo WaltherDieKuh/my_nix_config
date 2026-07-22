@@ -16,19 +16,18 @@
     brightnessctl
     # hyprpaper removed (old Hyprland-specific setup)
     wl-clipboard
-    swww
+    awww
     waybar
     nextcloud-client
     jetbrains-toolbox
     docker
     tor-browser
     lmms
+    prismlauncher
 
     rofi-pass-wayland
     gnupg
   ];
-
-  gtk.gtk4.theme = null;
 
   programs = {
     home-manager.enable = true;
@@ -40,11 +39,11 @@
     bat.enable = true;
 
     fish = {
-    enable = true;
-    interactiveShellInit = ''
-      # Zwingt Fish dazu, runde Ecken korrekt als Breite 1 zu berechnen
-      set -g fish_ambiguous_width 1
-    '';
+      enable = true;
+      interactiveShellInit = ''
+        # Zwingt Fish dazu, runde Ecken korrekt als Breite 1 zu berechnen
+        set -g fish_ambiguous_width 1
+      '';
     };
 
     password-store = {
@@ -59,8 +58,8 @@
       browsers = ["firefox"];
     };
     direnv = {
-    enable = true;
-    nix-direnv.enable = true;
+      enable = true;
+      nix-direnv.enable = true;
     };
   };
 
@@ -80,7 +79,7 @@
   home.stateVersion = "25.05";
 
   # Niri user config moved to a separate file to keep this file tidy
-  
+
   imports = [
     ../modules/stylix.nix
     ../modules/stylix-home.nix
@@ -92,6 +91,5 @@
     ../modules/nextcloud-client.nix
     ./aliasse.nix
     ./niri-home.nix
-
   ];
 }

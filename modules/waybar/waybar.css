@@ -1,75 +1,137 @@
+/* ==========================================================================
+   FARBSCHEMA
+   ========================================================================== */
+@define-color bg #20242c;       /* 1. Hintergrund der Bar */
+@define-color surface #313946;  /* 2. Hintergrund ALLER Modul-Boxen */
+@define-color text #c7d9e8;     /* 3. Schrift & Icons */
+
+/* ==========================================================================
+   GLOBALES STYLING
+   ========================================================================== */
 * {
     font-family: "Monocraft", "Symbols Nerd Font", "JetBrainsMono Nerd Font", sans-serif;
-    font-size: 11px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 500;
     border: none;
     border-radius: 0;
     min-height: 0;
+    margin: 0;
+    padding: 0;
+    color: @text;
 }
 
 window#waybar {
-    background: rgba(30, 30, 46, 0.7);
-    color: #cdd6f4;
-    border-radius: 14px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    background: @bg;
+    color: @text;
+    min-height: 0;
+    box-shadow: none;
 }
 
 tooltip {
-    background: rgba(30, 30, 46, 0.9);
-    border-radius: 12px;
-    border: 2px solid #89b4fa;
+    background: @surface;
+    border-radius: 0;
+    border: none;
 }
 
-#workspaces, #window, #mpris, #clock, #pulseaudio, #network, #battery, #tray, #cpu, #custom-notification, #bluetooth, #memory, #custom-gpu {
-    background: rgba(49, 50, 68, 0.5);
-    border-radius: 10px;
-    margin: 6px 4px;
+tooltip label {
+    color: @text;
+}
+
+/* ==========================================================================
+   ALLE MODULE (Einheitlicher Hintergrund & Text)
+   ========================================================================== */
+#custom-launcher,
+#workspaces,
+.workspaces,
+#niri-workspaces,
+#window,
+.window,
+#niri-window,
+#mpris,
+#clock,
+#pulseaudio,
+#network,
+#battery,
+#tray,
+#cpu,
+#custom-notification,
+#bluetooth,
+#memory,
+#custom-gpu {
+    background: @surface; /* JEDES Modul nutzt exakt diesen Hintergrund */
+    color: @text;
+    border: none;
+    border-radius: 0;
+    margin: 0;
     padding: 0 10px;
-    color: #bac2de;
 }
 
+/* Launcher Extra-Größe (Hintergrund bleibt @surface) */
 #custom-launcher {
-    color: #89b4fa;
-    padding-left: 14px;
-    padding-right: 2px;
-    font-size: 22px;
+    font-size: 18px;
+    min-width: 0;
 }
 
-#workspaces button {
-    color: #6c7086;
+/* ==========================================================================
+   WORKSPACES (Invertierung nur durch @text und @bg)
+   ========================================================================== */
+#workspaces button,
+.workspaces button,
+#niri-workspaces button {
     background: transparent;
-    transition: all 0.3s ease;
+    color: @text;
+    border-radius: 0;
+    margin: 0;
     padding: 0 6px;
+    transition: all 180ms ease;
 }
 
-#workspaces button.active {
-    color: #89b4fa;
-    text-shadow: 0 0 5px rgba(137, 180, 250, 0.5);
+/* Inaktive Workspace-Icons */
+#workspaces button label,
+.workspaces button label,
+#niri-workspaces button label {
+    color: @text;
 }
 
-#workspaces button:hover {
-    color: #cdd6f4;
+/* Aktiver Workspace / Hover / Urgent: Invertiert */
+#workspaces button.active,
+.workspaces button.active,
+#niri-workspaces button.active,
+#workspaces button.urgent,
+.workspaces button.urgent,
+#niri-workspaces button.urgent,
+#workspaces button:hover,
+.workspaces button:hover,
+#niri-workspaces button:hover {
+    background: @text;
+    color: @bg;
 }
 
-#mpris { color: #a6e3a1; }
-#clock { color: #f38ba8; }
-#cpu { color: #f9e2af; }
-#network { color: #89dceb; }
-#pulseaudio { color: #fab387; }
-#battery { color: #f9e2af; }
-#battery.charging { color: #a6e3a1; }
-#battery.warning:not(.charging) {
-    color: #f38ba8;
-    animation: blink 1s linear infinite;
-}
-#memory { color: #1ec85d; }
-#custom-gpu { color: #4c1dd8; }
-#bluetooth { color: #d13dcc; }
-
-@keyframes blink { 50% { color: transparent; } }
-
-#custom-notification {
-    color: #cba6f7;
-    padding-right: 14px;
+/* Zwingt das Icon im aktiven Button auf die dunkle Hintergrundfarbe */
+#workspaces button.active label,
+.workspaces button.active label,
+#niri-workspaces button.active label,
+#workspaces button.urgent label,
+.workspaces button.urgent label,
+#niri-workspaces button.urgent label,
+#workspaces button:hover label,
+.workspaces button:hover label,
+#niri-workspaces button:hover label {
+    color: @bg;
 }
 
+/* ==========================================================================
+   TRAY & BLINK-ANIMATION
+   ========================================================================== */
+#tray,
+#tray *,
+#tray menu,
+#tray menu * {
+    color: @text;
+}
+
+@keyframes blink {
+    50% {
+        color: transparent;
+    }
+}

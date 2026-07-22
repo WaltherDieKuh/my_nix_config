@@ -1,18 +1,17 @@
 {
   config,
-  pkgs,
   ...
 }:
 let
   barConfig = {
     layer = "top";
     position = "top";
-    margin = "8 14 0 14";
-    spacing = 10;
+    margin = "0";
+    spacing = 0;
   };
   commonModules = {
     "custom/launcher" = {
-      format = " ";
+      format = "";
       on-click = "rofi -show drun";
       tooltip = false;
     };
@@ -33,7 +32,7 @@ let
       separate-outputs = true;
     };
     mpris = {
-      format = "{player_icon}  {artist} - {title}";
+      format = "{player_icon} {artist} - {title}";
       format-paused = "{status_icon} <i>{artist} - {title}</i>";
       player-icons = {
         default = "▶";
@@ -48,40 +47,40 @@ let
       max-length = 50;
     };
     clock = {
-      format = "  {:%H:%M}";
+      format = " {:%H:%M}";
       tooltip-format = "<tt><small>{calendar}</small></tt>";
       calendar = {
         mode = "year";
         mode-mon-col = 3;
         on-scroll = 1;
         format = {
-          months = "<span color='#ffead3'><b>{}</b></span>";
-          days = "<span color='#ecc6d9'><b>{}</b></span>";
-          weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-          weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-          today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+          months = "<span color='#b6d5ef'><b>{}</b></span>";
+          days = "<span color='#9fc6e8'><b>{}</b></span>";
+          weeks = "<span color='#86b7df'><b>W{}</b></span>";
+          weekdays = "<span color='#c9e3f5'><b>{}</b></span>";
+          today = "<span color='#6ea9d8'><b><u>{}</u></b></span>";
         };
       };
     };
     pulseaudio = {
-      format = "{icon}  {volume}%";
-      format-muted = "   Muted";
+      format = "{icon} {volume}%";
+      format-muted = " Muted";
       format-icons = {
         default = ["" "" ""];
       };
       on-click = "pavucontrol";
     };
     network = {
-      format-wifi = "   {essid}";
-      format-ethernet = "󰈀   Wired";
-      format-disconnected = "󰤭   Offline";
+      format-wifi = " {essid}";
+      format-ethernet = "󰈀 Wired";
+      format-disconnected = "󰤭 Offline";
       tooltip-format = "{ifname} via {gwaddr}";
       on-click = "nm-connection-editor";
     };
     bluetooth = {
-      format = "  {status}";
-      format-connected = "  {device_alias}";
-      format-connected-battery = "  {device_alias} {device_battery_percentage}%";
+      format = " {status}";
+      format-connected = " {device_alias}";
+      format-connected-battery = " {device_alias} {device_battery_percentage}%";
       tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
       tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
       tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
@@ -93,38 +92,38 @@ let
         warning = 30;
         critical = 15;
       };
-      format = "{icon}  {capacity}%";
-      format-charging = "󰂄  {capacity}%";
-      format-plugged = "   {capacity}%";
+      format = "{icon} {capacity}%";
+      format-charging = "󰂄 {capacity}%";
+      format-plugged = " {capacity}%";
       format-icons = ["󰁺" "󰁽" "󰁿" "󰂁" "󰁹"];
     };
     tray = {
       icon-size = 18;
-      spacing = 10;
+      spacing = 0;
     };
     cpu = {
-      format = "  {usage}%";
+      format = " {usage}%";
       tooltip = false;
     };
     memory = {
-      format = "  {}%";
+      format = " {}%";
     };
     "custom/gpu" = {
       exec = "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits";
-      format = "󰢮  {}%";
+      format = "󰢮 {}%";
       interval = 1;
     };
     "custom/notification" = {
       tooltip = false;
       format = "{icon} ";
       format-icons = {
-        notification = " <span foreground='red'><sup></sup></span>";
+        notification = " •";
         none = " ";
-        dnd-notification = " <span foreground='red'><sup></sup></span>";
+        dnd-notification = " •";
         dnd-none = " ";
-        inhibited-notification = " <span foreground='red'><sup></sup></span>";
+        inhibited-notification = " •";
         inhibited-none = " ";
-        dnd-inhibited-notification = " <span foreground='red'><sup></sup></span>";
+        dnd-inhibited-notification = " •";
         dnd-inhibited-none = " ";
       };
       return-type = "json";
