@@ -7,6 +7,7 @@
     ../../modules/vaultwarden.nix
     ../../modules/nextcloud.nix
     #../../modules/backup.nix
+    ../../modules/minecraft-server.nix
   ];
 
   # ===== System / Netzwerk =====
