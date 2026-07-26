@@ -68,6 +68,8 @@
       trusted_domains = [
         "mk-2-home-server.duckdns.org"
         "nextcloud.mk-2-home-server.duckdns.org"
+	"cloud.wolke.id"
+	"nextcloud.wolke.id"
       ];
       overwriteprotocol = "https"; # Damit Nextcloud URLs standardmäßig mit https generiert
     };

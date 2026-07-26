@@ -197,11 +197,10 @@
     description = "Sync and convert Portfolio Images from Nextcloud";
     # Diese Pakete braucht das Skript zum Arbeiten
     path = [ pkgs.rsync pkgs.libwebp pkgs.coreutils pkgs.findutils ];
-    
     script = ''
       # --- HIER WIEDER DEINE PFADE ANPASSEN ---
-      NC_DIR="/var/lib/nextcloud/data/SOPHIE/files/Portfolio_Bilder" 
-      WEB_DIR="/var/www/portfolio/images"
+      NC_DIR="/var/lib/nextcloud/data/Sophie/files/portfolio-media" 
+      WEB_DIR="/var/www/portfolio/media"
       # ----------------------------------------
 
       mkdir -p "$WEB_DIR"
@@ -225,6 +224,7 @@
           # Die WebP existiert bereits (warum auch immer noch das alte JPG da liegt)
           rm "$file"
         fi
+        
       done
 
       # Schritt 3: Rechte fixen
@@ -232,7 +232,8 @@
       find /var/www/portfolio -type d -exec chmod 755 {} +
       find /var/www/portfolio -type f -exec chmod 644 {} +
     '';
-    serviceConfig = {
+
+        serviceConfig = {
       Type = "oneshot";
       User = "root"; # Braucht Root-Rechte, um in den Nextcloud-Datenordner zu gucken
     };
