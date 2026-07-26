@@ -9,7 +9,7 @@
     
     config = {
       # Die URL, unter der Vaultwarden erreichbar sein wird
-      DOMAIN = "https://vault.mk-2-home-server.duckdns.org";
+      DOMAIN = "https://vault.wolke.id";
       
       # Sicherheit: Registrierungen nach dem Erstellen des ersten Accounts #deaktivieren!
       SIGNUPS_ALLOWED = true; 
@@ -29,7 +29,7 @@
     recommendedTlsSettings = false;
     recommendedGzipSettings = true;
 
-    virtualHosts."vault.mk-2-home-server.duckdns.org" = {
+    virtualHosts."vault.wolke.id" = {
       # Kein SSL mehr lokal, der VPS-Tunnel übernimmt Let's Encrypt
       locations."/" = {
         proxyPass = "http://127.0.0.1:8222";
