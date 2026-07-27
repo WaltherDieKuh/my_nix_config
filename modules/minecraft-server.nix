@@ -5,6 +5,7 @@
   environment.systemPackages = with pkgs; [
     jdk25_headless
     screen
+    kitty.terminfo
     
     (writeShellScriptBin "create-mc-server" ''
       #!/usr/bin/env bash
