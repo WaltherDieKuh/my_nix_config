@@ -3,7 +3,7 @@
 {
   # Java 21 & das Helper-Skript installieren
   environment.systemPackages = with pkgs; [
-    jdk21_headless
+    jdk25_headless
     
     (writeShellScriptBin "create-mc-server" ''
       #!/usr/bin/env bash
