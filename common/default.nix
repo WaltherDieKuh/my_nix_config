@@ -31,7 +31,10 @@ in {
     firewall = rec {
       # Wir öffnen Port 5353 (UDP) für mDNS (Spotify Connect Discovery / Zeroconf)
       # und TCP/UDP 5000 explizit für den spotifyd Daemon
-      allowedTCPPorts = [5000];
+      allowedTCPPorts = [
+        5000
+        25565
+      ];
       allowedUDPPorts = [
         5353
         5000
