@@ -9,7 +9,7 @@
       #!/usr/bin/env bash
       SERVER_NAME=$1
       JAR_FILE=$2
-      BASE_DIR="/srv/minecraft"
+      BASE_DIR="/home/server/minecraft"
 
       if [ -z "$SERVER_NAME" ] || [ -z "$JAR_FILE" ]; then
         echo "❌ Fehler! Nutzung: create-mc-server <ServerName> <Pfad-zur-Server.jar>"
