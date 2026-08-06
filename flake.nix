@@ -2,6 +2,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     #hyprland.url = "github:hyprwm/Hyprland";
@@ -23,6 +24,7 @@
   outputs = {
     self,
     nixpkgs,
+    chaotic,
     home-manager,
     stylix,
     minesddm,

@@ -12,6 +12,7 @@
 in {
   imports = [
     ./greetd.nix
+    inputs.chaotic.nixosModules.default
   ];
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
@@ -71,6 +72,14 @@ in {
       "nix-command"
       "flakes"
     ];
+    substituters = [
+      "https://nyx-cache.chaotic.cx/"
+      "https://cache.nixos.org/"
+    ];
+    trusted-public-keys = [
+      "nyx-cache.chaotic.cx:dJxTrgMC3V3cFfyIiBQDQorG6k1LsqurH/srpMSq7qk="
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -107,6 +116,7 @@ in {
   # Boot and Grub Theme (minecraft)
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
   boot.loader.grub = {
     enable = true;
     device = "nodev";

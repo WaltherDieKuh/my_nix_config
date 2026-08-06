@@ -28,6 +28,27 @@
       };
     };
 
+    wilhelmTraeno = {
+      address = "ww@traeno.com";
+      userName = "ww@traeno.com";
+      flavor = "plain";
+      realName = "Wilhelm Wölkner";
+      imap = {
+        host = "mail.your-server.de";
+        port = 993;
+        tls.enable = true;
+      };
+      thunderbird = {
+        enable = true;
+        profiles = ["Privat"];
+      };
+      smtp = {
+        host = "mail.your-server.de";
+        port = 587;
+        tls.useStartTls = true;
+      };
+    };
+
     wilhelmFH = {
       address = "wilhelm.woelkner@fh-erfurt.de";
       userName = "wi2785wo";
