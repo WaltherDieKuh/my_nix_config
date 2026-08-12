@@ -4,15 +4,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland.url = "github:hyprwm/Hyprland";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
-    hyprland,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -51,8 +48,6 @@
               };
             };
           }
-
-          hyprland.nixosModules.default
 
           # Das Overlay-Modul wird hier als letztes Element eingefügt
           (

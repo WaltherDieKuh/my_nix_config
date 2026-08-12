@@ -1,4 +1,3 @@
-#Das ist meine hosts/laptopUni.nix
 {
   config,
   pkgs,
@@ -23,14 +22,16 @@
     ];
   };
 
-  networking.hostName = "djj-AIO";
+  networking = {
+    hostName = "djj-AIO";
+    # WLAN-Energiesparmodus aus (immer volle Verbindung)
+    networkmanager.wifi.powersave = false;
+  };
   time.timeZone = "Europe/Berlin";
 
-  # Localization settings for Germany
   i18n.defaultLocale = "de_DE.UTF-8";
   console.keyMap = "de";
 
-  # Set keyboard layout for Wayland
   environment.variables = {
     XKB_DEFAULT_LAYOUT = "de";
     XKB_DEFAULT_VARIANT = "nodeadkeys";
@@ -48,10 +49,38 @@
       enable = true;
       jack.enable = true;
     };
-    upower = {
-      enable = true;
+    # Kein automatisches Abschalten des Bildschirms / Idle-Aktionen
+    logind.settings.Login = {
+      IdleAction = "ignore";
+      HandleLidSwitch = "ignore";
+      HandleLidSwitchDocked = "ignore";
+      HandleLidSwitchExternalPower = "ignore";
     };
   };
+
+  # Kiosk: Das Ding soll nie in den Standby/Suspend fallen.
+  systemd.targets.sleep.enable = lib.mkForce false;
+  systemd.targets.suspend.enable = lib.mkForce false;
+  systemd.targets.hibernate.enable = lib.mkForce false;
+  systemd.targets.hybrid-sleep.enable = lib.mkForce false;
+
+  # Immer volle Leistung – der Kiosk hängt am Strom.
+  systemd.services.cpu-governor-performance = {
+    description = "Force CPU scaling governor to performance";
+    wantedBy = ["multi-user.target"];
+    after = ["systemd-udevd.service"];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      for g in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+        echo performance > "$g" 2>/dev/null || true
+      done
+    '';
+  };
+
+  # Autologin direkt auf tty1 (NixOS startet nur tty1 automatisch;
+  # ein VT-Wechsel auf tty2 gibt eine Shell zum Warten)
+  services.getty.autologinUser = "djj";
+
   users.mutableUsers = false;
 
   users.users.djj = {
@@ -68,32 +97,13 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vim
     git
-    git-lfs
-    networkmanager
-    zip
-    unzip
-    btop
-    bluez
-    upower
-    nemo
-    kitty
+    vim
   ];
 
   fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.fira-code
+    noto-fonts
   ];
-
-  services.xserver.enable = false;
-  services.displayManager.defaultSession = "hyprland";
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "djj";
-  };
-
-  programs.hyprland.enable = true;
 
   system.stateVersion = "25.05";
 }
