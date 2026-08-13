@@ -50,7 +50,7 @@ in {
 
       seat = {
         "*" = {
-          hide_cursor = "when-typing";
+          hide_cursor = "when-typing enable";
         };
       };
 
