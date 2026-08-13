@@ -70,10 +70,10 @@ in {
       ];
 
       keybindings = {
-        "$mod+b" = "exec ${openBrowser}/bin/open-browser";
-        "$mod+k" = "exec ${toggleKeyboard}/bin/toggle-keyboard";
-        "$mod+m" = "workspace 1";
-        "$mod+q" = "kill";
+        "Mod4+b" = "exec ${openBrowser}/bin/open-browser";
+        "Mod4+k" = "exec ${toggleKeyboard}/bin/toggle-keyboard";
+        "Mod4+m" = "workspace 1";
+        "Mod4+q" = "kill";
       };
     };
 
