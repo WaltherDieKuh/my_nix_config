@@ -43,6 +43,10 @@ in {
     enable = true;
     systemd.enable = false;
 
+    # Config-Check beim Build deaktivieren (schlägt im Sandbox fehl).
+    # TODO: sway-Config später manuell prüfen (sway --validate)
+    checkConfig = false;
+
     config = {
       modifier = "Mod4";
 
