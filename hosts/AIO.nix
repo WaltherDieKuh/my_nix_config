@@ -77,9 +77,18 @@
     '';
   };
 
-  # Autologin direkt auf tty1 (NixOS startet nur tty1 automatisch;
-  # ein VT-Wechsel auf tty2 gibt eine Shell zum Warten)
-  services.getty.autologinUser = "djj";
+  # Autologin-Session über greetd: nötig für eine richtige grafische
+  # Session, damit sway/wlroots den Bildschirm-Treiber nutzen kann.
+  # (getty-Autologin + direkter sway-Start funktionierte nicht.)
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.sway}/bin/sway";
+        user = "djj";
+      };
+    };
+  };
 
   users.mutableUsers = false;
 

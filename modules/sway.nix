@@ -32,13 +32,6 @@
     ${swaymsg} exec magicq
   '';
 in {
-  # Session-Start: beim Login auf tty1 (getty-Autologin) direkt sway starten
-  programs.fish.loginShellInit = ''
-    if status is-login; and test (tty) = /dev/tty1; and test -z "$DISPLAY"; and test -z "$WAYLAND_DISPLAY"
-      exec sway
-    end
-  '';
-
   wayland.windowManager.sway = {
     enable = true;
     systemd.enable = false;
@@ -72,8 +65,8 @@ in {
       };
 
       startup = [
-        {command = "brightnessctl set 100%";}
-        {command = "magicq";}
+        {command = "${pkgs.brightnessctl}/bin/brightnessctl set 100%";}
+        {command = "${pkgs.magicq}/bin/magicq";}
       ];
 
       keybindings = {
