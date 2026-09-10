@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   # Niri user config (moved out of willi.nix to keep it tidy)
   xdg.configFile."niri/config.kdl".text = ''
     // Niri config (KDL)
@@ -23,6 +27,7 @@
     layout {
       gaps 5
       default-column-width { proportion 0.5; }
+      background-color "#000000"
 
       focus-ring {
         off
@@ -31,6 +36,10 @@
       border {
         off
       }
+    }
+
+    overview {
+      backdrop-color "#000000"
     }
 
     spawn-at-startup "waybar"
@@ -109,5 +118,4 @@
       Print { spawn "bash" "-c" "grim -g \"$(slurp)\" - | wl-copy"; }
     }
   '';
-
 }

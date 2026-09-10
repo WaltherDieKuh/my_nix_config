@@ -1,40 +1,44 @@
 /* ==========================================================================
    FARBSCHEMA
    ========================================================================== */
-@define-color bg #20242c;       /* 1. Hintergrund der Bar */
-@define-color surface #313946;  /* 2. Hintergrund ALLER Modul-Boxen */
-@define-color text #c7d9e8;     /* 3. Schrift & Icons */
+@define-color bg #000000;
+/* 1. Hintergrund der Bar */
+@define-color surface #313946;
+/* 2. Hintergrund ALLER Modul-Boxen */
+@define-color text #c7d9e8;
+/* 3. Schrift & Icons */
 
 /* ==========================================================================
    GLOBALES STYLING
    ========================================================================== */
 * {
-    font-family: "Monocraft", "Symbols Nerd Font", "JetBrainsMono Nerd Font", sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    border: none;
-    border-radius: 0;
-    min-height: 0;
-    margin: 0;
-    padding: 0;
-    color: @text;
+  font-family:
+    "Monocraft", "Symbols Nerd Font", "JetBrainsMono Nerd Font", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  color: @text;
 }
 
 window#waybar {
-    background: @bg;
-    color: @text;
-    min-height: 0;
-    box-shadow: none;
+  background: @bg;
+  color: @text;
+  min-height: 0;
+  box-shadow: none;
 }
 
 tooltip {
-    background: @surface;
-    border-radius: 0;
-    border: none;
+  background: @surface;
+  border-radius: 0;
+  border: none;
 }
 
 tooltip label {
-    color: @text;
+  color: @text;
 }
 
 /* ==========================================================================
@@ -58,18 +62,19 @@ tooltip label {
 #bluetooth,
 #memory,
 #custom-gpu {
-    background: @surface; /* JEDES Modul nutzt exakt diesen Hintergrund */
-    color: @text;
-    border: none;
-    border-radius: 0;
-    margin: 0;
-    padding: 0 10px;
+  background: @surface;
+  /* JEDES Modul nutzt exakt diesen Hintergrund */
+  color: @text;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 0 10px;
 }
 
 /* Launcher Extra-Größe (Hintergrund bleibt @surface) */
 #custom-launcher {
-    font-size: 18px;
-    min-width: 0;
+  font-size: 18px;
+  min-width: 0;
 }
 
 /* ==========================================================================
@@ -78,19 +83,19 @@ tooltip label {
 #workspaces button,
 .workspaces button,
 #niri-workspaces button {
-    background: transparent;
-    color: @text;
-    border-radius: 0;
-    margin: 0;
-    padding: 0 6px;
-    transition: all 180ms ease;
+  background: transparent;
+  color: @text;
+  border-radius: 0;
+  margin: 0;
+  padding: 0 6px;
+  transition: all 180ms ease;
 }
 
 /* Inaktive Workspace-Icons */
 #workspaces button label,
 .workspaces button label,
 #niri-workspaces button label {
-    color: @text;
+  color: @text;
 }
 
 /* Aktiver Workspace / Hover / Urgent: Invertiert */
@@ -103,8 +108,8 @@ tooltip label {
 #workspaces button:hover,
 .workspaces button:hover,
 #niri-workspaces button:hover {
-    background: @text;
-    color: @bg;
+  background: @text;
+  color: @bg;
 }
 
 /* Zwingt das Icon im aktiven Button auf die dunkle Hintergrundfarbe */
@@ -117,7 +122,7 @@ tooltip label {
 #workspaces button:hover label,
 .workspaces button:hover label,
 #niri-workspaces button:hover label {
-    color: @bg;
+  color: @bg;
 }
 
 /* ==========================================================================
@@ -127,11 +132,11 @@ tooltip label {
 #tray *,
 #tray menu,
 #tray menu * {
-    color: @text;
+  color: @text;
 }
 
 @keyframes blink {
-    50% {
-        color: transparent;
-    }
+  50% {
+    color: transparent;
+  }
 }

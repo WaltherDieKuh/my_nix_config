@@ -24,8 +24,7 @@
     tor-browser
     lmms
     prismlauncher
-
-    rofi-pass-wayland
+    opencode
     gnupg
   ];
 

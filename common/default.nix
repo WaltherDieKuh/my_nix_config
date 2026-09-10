@@ -26,6 +26,16 @@ in {
     };
     upower.enable = true;
     xserver.enable = false;
+    netbird.clients.wt0 = {
+      port = 51821;
+      ui.enable = true;
+      openFirewall = true;
+      openInternalFirewall = true;
+      dns-resolver = {
+        address = "127.0.0.67";
+        port = 53;
+      };
+    };
   };
 
   networking = {
